@@ -29,7 +29,8 @@ var resizeableImage = function(image_target) {
         $container = $(image_target).parent('.resize-container');
 
         // Add events
-        $container.on('mousedown', '.resize-handle', startResize);
+        $container.on('mousedown touchstart', '.resize-handle', startResize);
+        $container.on('mousedown touchstart', 'img', startMoving);
     };
 
     saveEventState = function (e) {
@@ -58,8 +59,8 @@ var resizeableImage = function(image_target) {
         e.preventDefault();
         e.stopPropagation();
         saveEventState(e);
-        $(document).on('mousemove', resizing);
-        $(document).on('mouseup', endResize);
+        $(document).on('mousemove touchmove', resizing);
+        $(document).on('mouseup touchend', endResize);
     };
 
     endResize = function (e) {
@@ -73,16 +74,42 @@ var resizeableImage = function(image_target) {
         mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
 
-        width = mouse.x - event_state.container_left;
-        height = mouse.y - event_state.container_top;
-        left = event_state.container_left;
-        top = event_state.container_top;
+        // Position image differently depending on the corner dragged and constraints
+        if ($(event_state.evnt.target).hasClass('resize-handle-se')) {
+            width = mouse.x - event_state.container_left;
+            height = mouse.y - event_state.container_top;
+            left = event_state.container_left;
+            top = event_state.container_top;
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-sw')) {
+            width = event_state.container_width - (mouse.x - event_state.container_left);
+            height = mouse.y - event_state.container_top;
+            left = mouse.x;
+            top = event_state.container_top;
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-nw')) {
+            width = event_state.container_width - (mouse.x - event_state.container_left);
+            height = event_state.container_height - (mouse.y - event_state.container_top);
+            left = mouse.x;
+            top = mouse.y;
+            if (constrain || e.shiftKey) {
+                top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
+            }
+        } else if ($(event_state.evnt.target).hasClass('resize-handle-ne')) {
+            width = mouse.x - event_state.container_left;
+            height = event_state.container_height - (mouse.y - event_state.container_top);
+            left = event_state.container_left;
+            top = mouse.y;
+            if (constrain || e.shiftKey) {
+                top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
+            }
+        }
 
+        // Optionally maintain aspect ratio
         if (constrain || e.shiftKey) {
             height = width / orig_src.width * orig_src.height;
         }
 
         if (width > min_width && height > min_height && width < max_width && height < max_height) {
+            // To improve performance you might limit how often resizeImage() is called
             resizeImage(width, height);
             // Without this Firefox will not re-calculate the the image dimensions until drag end
             $container.offset({ 'left': left, 'top': top });
@@ -93,6 +120,30 @@ var resizeableImage = function(image_target) {
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
         $(image_target).attr('src', resize_canvas.toDataURL("image/png"));
+    };
+    startMoving = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        saveEventState(e);
+        $(document).on('mousemove touchmove', moving);
+        $(document).on('mouseup touchend', endMoving);
+    };
+
+    endMoving = function (e) {
+        e.preventDefault();
+        $(document).off('mouseup touchend', endMoving);
+        $(document).off('mousemove touchmove', moving);
+    };
+    moving = function (e) {
+        var mouse = {};
+        e.preventDefault();
+        e.stopPropagation();
+        mouse.x = (e.clientX || e.pageX) + $(window).scrollLeft();
+        mouse.y = (e.clientY || e.pageY) + $(window).scrollTop();
+        $container.offset({
+            'left': mouse.x - (event_state.mouse_x - event_state.container_left),
+            'top': mouse.y - (event_state.mouse_y - event_state.container_top)
+        });
     };
 
     init();
