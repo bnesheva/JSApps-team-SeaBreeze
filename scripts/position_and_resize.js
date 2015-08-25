@@ -194,3 +194,4 @@ var resizeableImage = function(image_target) {
 
 resizeableImage($('.resize-image'));
 
+
