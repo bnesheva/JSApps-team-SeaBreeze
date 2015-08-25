@@ -6,8 +6,8 @@ var resizeableImage = function(image_target) {
     image_target = $(image_target).get(0),
     event_state = {},
     constrain = false,
-    min_width = 60,
-    min_height = 60,
+    min_width = 40,
+    min_height = 40,
     max_width = 2700,
     max_height = 2000,
     resize_canvas = document.createElement('canvas');
@@ -33,6 +33,20 @@ var resizeableImage = function(image_target) {
         $container.on('mousedown touchstart', 'img', startMoving);
     };
 
+    startResize = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        saveEventState(e);
+        $(document).on('mousemove touchmove', resizing);
+        $(document).on('mouseup touchend', endResize);
+    };
+
+    endResize = function (e) {
+        e.preventDefault();
+        $(document).off('mouseup touchend', endResize);
+        $(document).off('mousemove touchmove', resizing);
+    };
+
     saveEventState = function (e) {
         // Save the initial event details and container state
         event_state.container_width = $container.width();
@@ -55,19 +69,6 @@ var resizeableImage = function(image_target) {
         event_state.evnt = e;
     }
 
-    startResize = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        saveEventState(e);
-        $(document).on('mousemove touchmove', resizing);
-        $(document).on('mouseup touchend', endResize);
-    };
-
-    endResize = function (e) {
-        e.preventDefault();
-        $(document).off('mouseup touchend', endResize);
-        $(document).off('mousemove touchmove', resizing);
-    };
 
     resizing = function (e) {
         var mouse = {}, width, height, left, top, offset = $container.offset();
@@ -134,17 +135,59 @@ var resizeableImage = function(image_target) {
         $(document).off('mouseup touchend', endMoving);
         $(document).off('mousemove touchmove', moving);
     };
+
     moving = function (e) {
-        var mouse = {};
+        var mouse = {}, touches;
         e.preventDefault();
         e.stopPropagation();
-        mouse.x = (e.clientX || e.pageX) + $(window).scrollLeft();
-        mouse.y = (e.clientY || e.pageY) + $(window).scrollTop();
+
+        touches = e.originalEvent.touches;
+
+        mouse.x = (e.clientX || e.pageX || touches[0].clientX) + $(window).scrollLeft();
+        mouse.y = (e.clientY || e.pageY || touches[0].clientY) + $(window).scrollTop();
         $container.offset({
             'left': mouse.x - (event_state.mouse_x - event_state.container_left),
             'top': mouse.y - (event_state.mouse_y - event_state.container_top)
         });
+        // Watch for pinch zoom gesture while moving
+        if (event_state.touches && event_state.touches.length > 1 && touches.length > 1) {
+            var width = event_state.container_width, height = event_state.container_height;
+            var a = event_state.touches[0].clientX - event_state.touches[1].clientX;
+            a = a * a;
+            var b = event_state.touches[0].clientY - event_state.touches[1].clientY;
+            b = b * b;
+            var dist1 = Math.sqrt(a + b);
+
+            a = e.originalEvent.touches[0].clientX - touches[1].clientX;
+            a = a * a;
+            b = e.originalEvent.touches[0].clientY - touches[1].clientY;
+            b = b * b;
+            var dist2 = Math.sqrt(a + b);
+
+            var ratio = dist2 / dist1;
+
+            width = width * ratio;
+            height = height * ratio;
+            // To improve performance you might limit how often resizeImage() is called
+            resizeImage(width, height);
+        }
     };
+
+    crop = function () {
+        //Find the part of the image that is inside the crop box
+        var crop_canvas,
+            left = $('.overlay').offset().left - $container.offset().left,
+            top = $('.overlay').offset().top - $container.offset().top,
+            width = $('.overlay').width(),
+            height = $('.overlay').height();
+
+        crop_canvas = document.createElement('canvas');
+        crop_canvas.width = width;
+        crop_canvas.height = height;
+
+        crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
+        window.open(crop_canvas.toDataURL("image/png"));
+    }
 
     init();
 };
