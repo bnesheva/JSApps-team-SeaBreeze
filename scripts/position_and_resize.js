@@ -29,7 +29,7 @@ var resizeableImage = function(image_target) {
         $container = $(image_target).parent('.resize-container');
 
         // Add events
-        $container.on('mousedown touchstart', '.resize-handle', startResize);
+        //$container.on('mousedown touchstart', '.resize-handle', startResize);
         $container.on('mousedown touchstart', 'img', startMoving);
     };
 
