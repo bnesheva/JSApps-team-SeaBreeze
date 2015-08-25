@@ -1,0 +1,77 @@
+﻿body {
+    min-height: 100vh;
+}
+#show_profile {
+    display: inline-block;
+}
+.profile_popup {
+    display: none;
+}
+.profile_holder:hover .profile_popup {
+        display: block;
+        position: absolute;
+        background: #333;
+        color: #fff;
+        padding: 10px;
+        border-radius: 0 0 3px 3px;
+        width: 250px;
+        right: 0px;
+}
+.navbar-nav>li .profile_holder a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+main .container-fluid {
+    background-color: #ccc;
+    height: 500px;
+    text-align: center;
+}
+#toolbar {
+    text-align: center;
+    padding: 5px;
+    background: rgba(255,255,255,0.7);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+}
+#toolbar .btn {
+    font-size: 10px;
+    width: 44px;
+    height: 44px;
+    margin: 5px;
+    white-space: normal;
+    padding: 0;
+}
+.sticker_thumbnail {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #eee;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+}
+.sticker_holder {
+    text-align: center;
+}
+footer {
+        background: #333;
+        color: #ccc;
+        text-align: center;
+}
+@media screen and (min-width: 768px) {
+    #toolbar {
+        position: absolute;
+        width: 68px;
+        bottom: auto;
+        top: 90px;
+        left: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
