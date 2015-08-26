@@ -203,3 +203,8 @@ Image editor from tutorial*/
     border-radius: 5px;
     color: #FFF;
 }
+
+#fileInput{
+    position: fixed;
+    top: -1000px;
+}

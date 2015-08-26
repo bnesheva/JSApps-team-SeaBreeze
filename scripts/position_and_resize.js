@@ -3,39 +3,40 @@
 console.log('position and resize loaded')
 
 var createImage = (function () {
-   var $container,
-   event_state = {},
-   constrain = false,
-   min_width = 40,
-   min_height = 40,
-   max_width = 2700,
-   max_height = 2000,
-   resize_canvas = document.createElement('canvas'),
-   orig_src = new Image;
+    var $container,
+        event_state = {},
+        constrain = false,
+        min_width = 40,
+        min_height = 40,
+        max_width = 2700,
+        max_height = 2000,
+        resize_canvas = document.createElement('canvas'),
+        orig_src = new Image;
 
-   createImage = Object.create({ });
+    createImage = Object.create({});
+
     createImage.init = function (image_target) {
         console.log('init started');
         createImage.image_target = $(image_target).get(0);
         orig_src.src = createImage.image_target.src;
         //console.log(orig_src.src);
         $(createImage.image_target).clone()
-        .appendTo($(createImage.image_target).parent())
-        .wrap('<div class="resize-container"></div>')
-        .before('<span class="resize-handle resize-handle-nw"></span>')
-        .before('<span class="resize-handle resize-handle-ne"></span>')
-        .after('<span class="resize-handle resize-handle-se"></span>')
-        .after('<span class="resize-handle resize-handle-sw"></span>');
+            .appendTo($(createImage.image_target).parent())
+            .wrap('<div class="resize-container"></div>')
+            .before('<span class="resize-handle resize-handle-nw"></span>')
+            .before('<span class="resize-handle resize-handle-ne"></span>')
+            .after('<span class="resize-handle resize-handle-se"></span>')
+            .after('<span class="resize-handle resize-handle-sw"></span>');
 
         // Get a variable for the container
         $container = $(image_target).parent('.resize-container');
 
         // Add events
-       // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
-       // $container.on('mousedown touchstart', 'img', createImage.startMoving);
+        // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
+        // $container.on('mousedown touchstart', 'img', createImage.startMoving);
         return this;
     };
-    
+
     createImage.startResize = function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -72,8 +73,7 @@ var createImage = (function () {
             });
         }
         event_state.evnt = e;
-    }
-
+    };
 
     createImage.resizing = function (e) {
         var mouse = {}, width, height, left, top, offset = $container.offset();
@@ -118,15 +118,17 @@ var createImage = (function () {
             // To improve performance you might limit how often resizeImage() is called
             createImage.resizeImage(width, height);
             // Without this Firefox will not re-calculate the the image dimensions until drag end
-            $container.offset({ 'left': left, 'top': top });
+            $container.offset({'left': left, 'top': top});
         }
-    }
+    };
+
     createImage.resizeImage = function (width, height) {
         resize_canvas.width = width;
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
         $(createImage.image_target).attr('src', resize_canvas.toDataURL("image/png"));
     };
+
     createImage.startMoving = function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -179,15 +181,12 @@ var createImage = (function () {
         }
     };
 
-
-
     //final return
     return createImage;
 
 }());
+var chosenPhoto = '.resize-image';
 
-
-var chosenPhoto = '.resize-image'
 $(document).on('click', '#load_photo', function () {
     createImage.init(chosenPhoto);
     if ($('.resize-container').hasClass('photo')) {
@@ -213,11 +212,11 @@ $(document).on('click', '.resize-container img', function () {
     var $outer = $(this).parent('.resize-container');
     $outer.addClass('selected');
 });
+
 $(document).on('click', '#position_image', function () {
     $('.resize-container.selected').on('mousedown touchstart', 'img', createImage.startMoving);
 });
+
 $(document).on('click', '#resize_image', function () {
     $('.resize-container.selected').on('mousedown touchstart', '.resize-handle', createImage.startResize);
 });
-
-
