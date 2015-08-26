@@ -1,6 +1,6 @@
 // JavaScript source code
 // Resize and position image
-console.log('loaded')
+console.log('position and resize loaded')
 
 var createImage = (function () {
    var $container,
@@ -19,21 +19,23 @@ var createImage = (function () {
         createImage.image_target = $(image_target).get(0);
         orig_src.src = createImage.image_target.src;
         //console.log(orig_src.src);
-        $(createImage.image_target).wrap('<div class="resize-container"></div>')
+        $(createImage.image_target).clone()
+        .appendTo($(createImage.image_target).parent())
+        .wrap('<div class="resize-container"></div>')
         .before('<span class="resize-handle resize-handle-nw"></span>')
         .before('<span class="resize-handle resize-handle-ne"></span>')
         .after('<span class="resize-handle resize-handle-se"></span>')
         .after('<span class="resize-handle resize-handle-sw"></span>');
 
         // Get a variable for the container
-        $container = $(createImage.image_target).parent('.resize-container');
+        $container = $(image_target).parent('.resize-container');
 
         // Add events
        // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
        // $container.on('mousedown touchstart', 'img', createImage.startMoving);
         return this;
     };
-
+    
     createImage.startResize = function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -129,6 +131,7 @@ var createImage = (function () {
         e.preventDefault();
         e.stopPropagation();
         createImage.saveEventState(e);
+        console.log(this);
         $(document).on('mousemove touchmove', createImage.moving);
         $(document).on('mouseup touchend', createImage.endMoving);
     };
@@ -183,30 +186,34 @@ var createImage = (function () {
 
 }());
 
-function loadPhoto(img) {
-    //resizeableImage2.init(img);
-    console.log('click')
-}
+
 var chosenPhoto = '.resize-image'
 $(document).on('click', '#load_photo', function () {
     createImage.init(chosenPhoto);
+    if ($('.resize-container').hasClass('photo')) {
+        $('.resize-container.photo').remove();
+    }
     $('.resize-container').removeClass('selected');
     var $outer = $(chosenPhoto).parent('.resize-container');
-    $outer.addClass('selected');
+    $outer.addClass('photo selected');
 });
+//test purpose
 $(document).on('click', '#share_picture', function () {
     createImage.init('.resize-image2');
+    if ($('.resize-container').hasClass('photo2')) {
+        $('.resize-container.photo2').remove();
+    }
     $('.resize-container').removeClass('selected');
-    var $outer = $(chosenPhoto).parent('.resize-container');
-    $outer.addClass('selected');
+    var $outer = $('.resize-image2').parent('.resize-container');
+    $outer.addClass('photo2 selected');
 });
+//end test
 $(document).on('click', '.resize-container img', function () {
     $('.resize-container').removeClass('selected');
     var $outer = $(this).parent('.resize-container');
     $outer.addClass('selected');
 });
 $(document).on('click', '#position_image', function () {
-   // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
     $('.resize-container.selected').on('mousedown touchstart', 'img', createImage.startMoving);
 });
 $(document).on('click', '#resize_image', function () {
