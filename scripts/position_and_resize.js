@@ -209,5 +209,8 @@ $(document).on('click', '#position_image', function () {
    // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
     $('.resize-container.selected').on('mousedown touchstart', 'img', createImage.startMoving);
 });
+$(document).on('click', '#resize_image', function () {
+    $('.resize-container.selected').on('mousedown touchstart', '.resize-handle', createImage.startResize);
+});
 
 
