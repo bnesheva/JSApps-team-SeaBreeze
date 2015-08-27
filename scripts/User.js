@@ -22,7 +22,7 @@ var user = (function () {
 	Object.defineProperty(user, 'username', {
 		get: function () {
 			return this._username;
-		},
+		}, 
 		set: function (value) {
 			this._username = value;
 		}
