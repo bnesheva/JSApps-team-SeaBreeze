@@ -2,20 +2,22 @@ var ImagesService = require('./ImagesService.js');
 
 var LoadPic = (function LoadPic() {
     var loadedPictureBtn = $('#load_photo'),
-        fileInput = $("<input/>").attr('type', 'file'),
+        $fileInput = $("<input/>").attr('type', 'file'),
+        $saveButton = $('#save_image_button');
 
         IS = Object.create(ImagesService).init();
 
     loadedPictureBtn.on('click', function () {
-        fileInput.click();
+        $fileInput.click();
     });
 
-    fileInput.on('change', function (e) {
+    $fileInput.on('change', function (e) {
         picChange(e)
-
-        IS.UploadImage(this.files[0]);
     });
 
+    $saveButton.on('click', function () {
+        IS.UploadImage($fileInput[0].files[0]);
+    });
 
     function makeImagesDisappear() {
         var images = $('img');
