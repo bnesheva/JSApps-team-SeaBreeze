@@ -1,28 +1,28 @@
 /**
  * Created by Nick on 26/8/2015.
  */
+var ImagesService = require('./ImagesService.js')
 
-var DBOperationsService = require('./DBOperationsService.js');
-
+// app start point
+// Temp
+// For test purpose
 var Main = (function () {
-
     var Service = {};
 
     Service.main = function() {
-        console.log('Main is running ', DBOperationsService);
+        var IS = Object.create(ImagesService).init();
 
-        var db = Object.create(DBOperationsService).init();
+        var $fileInput = $('<input/>')
+            .attr('type', "file")
+            .appendTo(document.body);
 
-        var users = db.GetAllImages(function(users) {
-            console.log('sadads', users);
+        $fileInput.on('change', function() {
+            console.log(this.files[0]);
+            IS.UploadImage(this.files[0]);
         });
     };
 
     return Service;
 })();
-
-var s = Object.create(Main);
-
-console.log(s);
 
 module.exports = Main;
