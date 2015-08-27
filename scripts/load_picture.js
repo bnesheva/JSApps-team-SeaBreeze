@@ -1,36 +1,53 @@
-var loadedPictureBtn = $('#load_photo');
-var fileInput = $("#fileInput");
+var ImagesService = require('./ImagesService.js');
 
-loadedPictureBtn.on('click', function () {
-    fileInput.click();
-});
+var LoadPic = (function LoadPic() {
+    var loadedPictureBtn = $('#load_photo'),
+        $fileInput = $("<input/>").attr('type', 'file'),
+        $saveButton = $('#save_image_button');
 
-function makeImagesDisappear() {
-    var images = $('img');
-    for (var i = 0, len = images.length; i < len; i += 1) {
-        images[i].style.display= 'none';
+        IS = Object.create(ImagesService).init();
+
+    loadedPictureBtn.on('click', function () {
+        $fileInput.click();
+    });
+
+    $fileInput.on('change', function (e) {
+        picChange(e)
+    });
+
+    $saveButton.on('click', function () {
+        IS.UploadImage($fileInput[0].files[0]);
+    });
+
+    function makeImagesDisappear() {
+        var images = $('img');
+        for (var i = 0, len = images.length; i < len; i += 1) {
+            images[i].style.display= 'none';
+        }
     }
-}
 
-function picChange(event) {
+    function picChange(event) {
 
-    makeImagesDisappear();
-    var fileInput = event.target.files;
+        makeImagesDisappear();
+        var fileInput = event.target.files;
 
-    if (fileInput.length > 0) {
+        if (fileInput.length > 0) {
 
-        var windowURL = window.URL || window.webkitURL;
-        var picURL = windowURL.createObjectURL(fileInput[0]);
-        var globalCanvas = document.getElementById("test");
-        globalCanvas.width = 700;
-        globalCanvas.height = 500;
-        var ctx = globalCanvas.getContext("2d");
+            var windowURL = window.URL || window.webkitURL;
+            var picURL = windowURL.createObjectURL(fileInput[0]);
+            var globalCanvas = document.getElementById("test");
+            globalCanvas.width = 700;
+            globalCanvas.height = 500;
+            var ctx = globalCanvas.getContext("2d");
 
-        var photo = new Image();
-        photo.onload = function () {
-            ctx.drawImage(photo, 0, 10, 700, 400);
-        };
+            var photo = new Image();
+            photo.onload = function () {
+                ctx.drawImage(photo, 0, 10, 700, 400);
+            };
 
-        photo.src = picURL;
+            photo.src = picURL;
+        }
     }
-}
+})();
+
+module.exports = LoadPic;

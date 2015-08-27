@@ -6,6 +6,9 @@
     <title>Become a Dev Master Overnight</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="scripts/libraries/system.js"></script>
+
 </head>
 <body>
 <header>
@@ -56,13 +59,15 @@
             <div class="overlay-inner">
             </div>
         </div>
+
+
         <button class="btn-crop js-crop">Crop</button>
     </div>
 </main>
 <aside id="toolbar">
-    <input id="fileInput" type="file" accept="image" onchange="picChange(event)"/>
+    <!--<input id="fileInput" type="file" accept="image"/>-->
     <button id="load_photo" class="btn btn-default">Load</button>
-    <button id="position_image" class="btn btn-default">Move</button>
+    <button id="save_image_button" class="btn btn-default">Save</button>
     <button id="resize_image" class="btn btn-default">Resize</button>
     <button id="add_sticker" class="btn btn-default">Add Sticker</button>
     <button id="share_picture" class="btn btn-default">
@@ -89,10 +94,21 @@
         </div>
     </div>
 </section>
+
 <footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course</footer>
+
+<script>
+
+    System.import('scripts/Main.js')
+            .then(function(Service) {
+                Service.main();
+            })
+
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="scripts/load_picture.js"></script>
+<!--<script src="scripts/load_picture.js"></script>-->
 <script src="scripts/position_and_resize.js"></script>
 </body>
 </html>
