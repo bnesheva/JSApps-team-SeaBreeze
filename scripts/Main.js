@@ -1,7 +1,8 @@
 /**
  * Created by Nick on 26/8/2015.
  */
-var ImagesService = require('./ImagesService.js')
+var ImagesService = require('./ImagesService.js');
+var LoadPicModule = require('./load_picture.js');
 
 // app start point
 // Temp
@@ -11,6 +12,8 @@ var Main = (function () {
 
     Service.main = function() {
         var IS = Object.create(ImagesService).init();
+
+        LoadPicModule;
 
         var $fileInput = $('<input/>')
             .attr('type', "file")

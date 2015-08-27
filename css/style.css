@@ -57,6 +57,9 @@ footer {
         color: #ccc;
         text-align: center;
 }
+main .container-fluid > img {
+	display: none;
+}
 @media screen and (min-width: 768px) {
     #toolbar {
         position: absolute;
@@ -199,4 +202,9 @@ Image editor from tutorial*/
     border: none;
     border-radius: 5px;
     color: #FFF;
+}
+
+#fileInput{
+    position: fixed;
+    top: -1000px;
 }

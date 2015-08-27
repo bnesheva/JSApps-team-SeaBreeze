@@ -79,6 +79,10 @@ var DBOperationsService = (function () {
         });
     };
 
+    DBService.GetImgsByUser = function(user) {
+        'TODO'
+    }
+
     DBService.DeleteImage = function() {
         'TODO:..'
     };

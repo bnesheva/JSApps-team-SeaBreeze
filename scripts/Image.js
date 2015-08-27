@@ -16,11 +16,11 @@ var Image = (function () {
         return this;
     };
 
-    img = {
-        "Filename": 'name',
-        "ContentType": "image",
-        "base64": imgData
-    };
+    //img = {
+    //    "Filename": 'name',
+    //    "ContentType": "image",
+    //    "base64": imgData
+    //};
 
     return Image;
 })();

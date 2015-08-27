@@ -2,7 +2,7 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Become a Dev Master Overnight</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,91 +11,100 @@
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-logo" href="#">Logo</a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Become a Dev <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Rate other Devs</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <div class="profile_holder">
-                                <a href="#" id="show_profile">Howdy, User</a>
-                                <div class="profile_popup">
-                                    <div class="row">
-                                        <div class="col-xs-4">Image</div>
-                                        <div class="col-xs-8">
-                                            <p>Name</p>
-                                            <button class="btn btn-default btn-xs">Log Off</button>
-                                        </div>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-logo" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Become a Dev <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Rate other Devs</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="profile_holder">
+                            <a href="#" id="show_profile">Howdy, User</a>
+
+                            <div class="profile_popup">
+                                <div class="row">
+                                    <div class="col-xs-4">Image</div>
+                                    <div class="col-xs-8">
+                                        <p>Name</p>
+                                        <button class="btn btn-default btn-xs">Log Off</button>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div class="container-fluid">
-            <img class="resize-image" src="images/test_photo.jpg" alt="Photo" />
-            <div class="overlay">
-                <div class="overlay-inner">
-                </div>
-            </div>
-            <button class="btn-crop js-crop">Crop</button>
-        </div>
-    </main>
-    <aside id="toolbar">
-        <button id="load_photo" class="btn btn-default">Load</button>
-        <button id="position_image" class="btn btn-default">Move</button>
-        <button id="resize_image" class="btn btn-default">Resize</button>
-        <button id="add_sticker" class="btn btn-default">Add Sticker</button>
-        <button id="share_picture" class="btn btn-default">Share</button>
-    </aside>
-    <section id="sticker_palette">
-        <div class="container-fluid sticker_container">
-            <h3>Choose sticker to add</h3>
-            <div class="sticker_holder">
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
-                <div class="sticker_thumbnail">Sticker</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
-    <footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course</footer>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid">
+        <img class="resize-image" src="images/test_photo.jpg" alt="Photo"/>
+        <img class="resize-image2" src="images/test_photo.jpg" alt="Photo"/>
+        <canvas id="test"></canvas>
+        <div class="overlay">
+            <div class="overlay-inner">
+            </div>
+        </div>
 
-    <script>
 
-        System.import('scripts/Main.js')
-                .then(function(Service) {
-                    Service.main();
-                })
+        <button class="btn-crop js-crop">Crop</button>
+    </div>
+</main>
+<aside id="toolbar">
+    <!--<input id="fileInput" type="file" accept="image"/>-->
+    <button id="load_photo" class="btn btn-default">Load</button>
+    <button id="position_image" class="btn btn-default">Move</button>
+    <button id="resize_image" class="btn btn-default">Resize</button>
+    <button id="add_sticker" class="btn btn-default">Add Sticker</button>
+    <button id="share_picture" class="btn btn-default">Share</button>
+</aside>
+<section id="sticker_palette">
+    <div class="container-fluid sticker_container">
+        <h3>Choose sticker to add</h3>
 
-    </script>
+        <div class="sticker_holder">
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+            <div class="sticker_thumbnail">Sticker</div>
+        </div>
+    </div>
+</section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="scripts/position_and_resize.js"></script>
+<footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course</footer>
 
+<script>
+
+    System.import('scripts/Main.js')
+            .then(function(Service) {
+                Service.main();
+            })
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!--<script src="scripts/load_picture.js"></script>-->
+<script src="scripts/position_and_resize.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ var ImagesService = (function () {
         return this;
     };
 
-    ImagesService.UploadImage = function(inputFIle) {
+    ImagesService.UploadImage = function(inputFile) {
         var img,
             imgData,
             FR= new FileReader();
@@ -22,17 +22,16 @@ var ImagesService = (function () {
             imgData = FR.result.split(',')[1];
 
             img = {
-                "Filename": inputFIle.name,
-                "ContentType": inputFIle.type,
+                "Filename": inputFile.name,
+                "ContentType": inputFile.type,
                 "base64": imgData
             };
 
             DB.AddImage(img);
         };
 
-        FR.readAsDataURL(inputFIle);
+        FR.readAsDataURL(inputFile);
     };
-
 
 
     return ImagesService;
