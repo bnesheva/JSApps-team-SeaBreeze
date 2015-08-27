@@ -80,7 +80,7 @@ main .container-fluid > img {
 Image editor from tutorial*/
 
 .resize-container {
-    position: relative;
+    position: absolute;
     display: inline-block;
     cursor: move;
     margin: 0 auto;

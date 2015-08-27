@@ -1,59 +1,46 @@
-// JavaScript source code
 // Resize and position image
-console.log('position and resize loaded')
-
-var createImage = (function () {
+console.log('loaded')
+var resizeableImage = (function () {
+    console.log('created');
     var $container,
+        orig_src = new Image(),
         event_state = {},
         constrain = false,
-        min_width = 40,
+        min_width = 40, 
         min_height = 40,
-        max_width = 2700,
-        max_height = 2000,
-        resize_canvas = document.createElement('canvas'),
-        orig_src = new Image;
+        max_width = 1800,
+        max_height = 1900,
+        resize_canvas = document.createElement('canvas');
+    var resizeableImage = Object.create({});
+    resizeableImage.init = function (src, className) {
 
-    createImage = Object.create({});
+        var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
+        $('main .container-fluid').prepend(imageLoaded);
 
-    createImage.init = function (image_target) {
-        console.log('init started');
-        createImage.image_target = $(image_target).get(0);
-        orig_src.src = createImage.image_target.src;
-        //console.log(orig_src.src);
-        $(createImage.image_target).clone()
-            .appendTo($(createImage.image_target).parent())
-            .wrap('<div class="resize-container"></div>')
-            .before('<span class="resize-handle resize-handle-nw"></span>')
-            .before('<span class="resize-handle resize-handle-ne"></span>')
-            .after('<span class="resize-handle resize-handle-se"></span>')
-            .after('<span class="resize-handle resize-handle-sw"></span>');
+        resizeableImage.name = className
+        resizeableImage.image_target = $('.' + className).get(0);
+        // When resizing, we will always use this copy of the original as the base
+        orig_src.src = resizeableImage.image_target.src;
 
-        // Get a variable for the container
-        $container = $(image_target).parent('.resize-container');
+        // Wrap the image with the container and add resize handles
+        $(resizeableImage.image_target).wrap('<div class="resize-container"></div>')
+        .before('<span class="resize-handle resize-handle-nw"></span>')
+        .before('<span class="resize-handle resize-handle-ne"></span>')
+        .after('<span class="resize-handle resize-handle-se"></span>')
+        .after('<span class="resize-handle resize-handle-sw"></span>');
+
+        // Assign the container to a variable
+        $container = $(resizeableImage.image_target).parent('.resize-container');
 
         // Add events
-        // $container.on('mousedown touchstart', '.resize-handle', createImage.startResize);
-        // $container.on('mousedown touchstart', 'img', createImage.startMoving);
+        $container.on('mousedown touchstart', '.resize-handle', resizeableImage.startResize);
+        $container.on('mousedown touchstart', 'img', resizeableImage.startMoving);
+        $('.js-crop').on('click', resizeableImage.crop);
+
         return this;
     };
 
-    createImage.startResize = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        createImage.saveEventState(e);
-        $(document).on('mousemove touchmove', createImage.resizing);
-        $(document).on('mouseup touchend', createImage.endResize);
-    };
-
-    createImage.endResize = function (e) {
-        e.preventDefault();
-        $(document).off('mouseup touchend', createImage.endResize);
-        $(document).off('mousemove touchmove', createImage.resizing);
-    };
-
-    createImage.saveEventState = function (e) {
-
-        console.log($container);
+    resizeableImage.saveEventState = function (e) {
         // Save the initial event details and container state
         event_state.container_width = $container.width();
         event_state.container_height = $container.height();
@@ -73,14 +60,37 @@ var createImage = (function () {
             });
         }
         event_state.evnt = e;
+        return event_state;
     };
 
-    createImage.resizing = function (e) {
-        var mouse = {}, width, height, left, top, offset = $container.offset();
+    resizeableImage.startResize = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        resizeableImage.saveEventState(e);
+        console.log(event_state);
+        $(document).on('mousemove touchmove', resizeableImage.resizing);
+        $(document).on('mouseup touchend', resizeableImage.endResize);
+    };
+
+    resizeableImage.endResize = function (e) {
+        e.preventDefault();
+        $(document).off('mouseup touchend', resizeableImage.endResize);
+        $(document).off('mousemove touchmove', resizeableImage.resizing);
+    };
+
+    resizeableImage.resizing = function (e) {
+        //console.log(event_state);
+        var mouse = {},
+            width,
+            height,
+            left,
+            top,
+            offset = $container.offset();
         mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
 
         // Position image differently depending on the corner dragged and constraints
+        console.log(event_state)
         if ($(event_state.evnt.target).hasClass('resize-handle-se')) {
             width = mouse.x - event_state.container_left;
             height = mouse.y - event_state.container_top;
@@ -116,35 +126,39 @@ var createImage = (function () {
 
         if (width > min_width && height > min_height && width < max_width && height < max_height) {
             // To improve performance you might limit how often resizeImage() is called
-            createImage.resizeImage(width, height);
+            resizeableImage.resizeImage(width, height);
             // Without this Firefox will not re-calculate the the image dimensions until drag end
-            $container.offset({'left': left, 'top': top});
+            $container.offset({ 'left': left, 'top': top });
         }
-    };
+        console.log('resize')
+        console.log($container);
+    }
 
-    createImage.resizeImage = function (width, height) {
+    resizeableImage.resizeImage = function (width, height) {
+        console.log('now resizing ' + width + ' ' + height);
+        console.log(resize_canvas);
         resize_canvas.width = width;
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
-        $(createImage.image_target).attr('src', resize_canvas.toDataURL("image/png"));
+        $(resizeableImage.image_target).attr('src', resize_canvas.toDataURL("image/png"));
     };
 
-    createImage.startMoving = function (e) {
+    resizeableImage.startMoving = function (e) {
         e.preventDefault();
         e.stopPropagation();
-        createImage.saveEventState(e);
-        console.log(this);
-        $(document).on('mousemove touchmove', createImage.moving);
-        $(document).on('mouseup touchend', createImage.endMoving);
+        resizeableImage.saveEventState(e);
+        $(document).on('mousemove touchmove', resizeableImage.moving);
+        $(document).on('mouseup touchend', resizeableImage.endMoving);
+        console.log(event_state);
     };
 
-    createImage.endMoving = function (e) {
+    resizeableImage.endMoving = function (e) {
         e.preventDefault();
-        $(document).off('mouseup touchend', createImage.endMoving);
-        $(document).off('mousemove touchmove', createImage.moving);
+        $(document).off('mouseup touchend', resizeableImage.endMoving);
+        $(document).off('mousemove touchmove', resizeableImage.moving);
     };
 
-    createImage.moving = function (e) {
+    resizeableImage.moving = function (e) {
         var mouse = {}, touches;
         e.preventDefault();
         e.stopPropagation();
@@ -177,46 +191,73 @@ var createImage = (function () {
             width = width * ratio;
             height = height * ratio;
             // To improve performance you might limit how often resizeImage() is called
-            createImage.resizeImage(width, height);
+            resizeableImage.resizeImage(width, height);
         }
+        console.log('move')
+        console.log($container);
     };
 
+    resizeableImage.crop = function () {
+        //Find the part of the image that is inside the crop box
+
+        var crop_canvas,
+            left = $('.overlay').offset().left - $container.offset().left,
+            top = $('.overlay').offset().top - $container.offset().top,
+            width = $('.overlay').width(),
+            height = $('.overlay').height();
+
+        crop_canvas = document.createElement('canvas');
+        crop_canvas.width = width;
+        crop_canvas.height = height;
+
+        crop_canvas.getContext('2d').drawImage(resizeableImage.image_target, left, top, width, height, 0, 0, width, height);
+        window.open(crop_canvas.toDataURL("image/png"));
+    }
+
+
+
     //final return
-    return createImage;
+    return resizeableImage;
 
 }());
-var chosenPhoto = '.resize-image';
+
+//resizeableImage.init($('.resize-image'));
+//resizeableImage1($('.resize-image'));
+var chosenPhoto = 'images/test_photo.jpg';
+var imgSelector = 'img[src$="test_photo.jpg"]'
+
+var images = [];
+
+function removeImage(name) {
+    var removed = $.grep(images, function (e) {
+        return e.name != name;
+    });
+    images = removed;
+}
 
 $(document).on('click', '#load_photo', function () {
-    createImage.init(chosenPhoto);
+    removeImage('photo');
     if ($('.resize-container').hasClass('photo')) {
         $('.resize-container.photo').remove();
     }
+    photo = (function (parent) {
+        var photo = Object.create(parent, {});
+
+        photo.init = function (chosenPhoto) {
+            parent.init.call(this, chosenPhoto);
+        };
+        photo.name = 'photo';
+
+        return photo;
+    }(resizeableImage));
+
+    photo.init(chosenPhoto);
+    
     $('.resize-container').removeClass('selected');
-    var $outer = $(chosenPhoto).parent('.resize-container');
+    var imgSelector = 'img[src$="test_photo.jpg"]';
+    var $outer = $(imgSelector).parent('.resize-container');
     $outer.addClass('photo selected');
-});
-//test purpose
-$(document).on('click', '#share_picture', function () {
-    createImage.init('.resize-image2');
-    if ($('.resize-container').hasClass('photo2')) {
-        $('.resize-container.photo2').remove();
-    }
-    $('.resize-container').removeClass('selected');
-    var $outer = $('.resize-image2').parent('.resize-container');
-    $outer.addClass('photo2 selected');
-});
-//end test
-$(document).on('click', '.resize-container img', function () {
-    $('.resize-container').removeClass('selected');
-    var $outer = $(this).parent('.resize-container');
-    $outer.addClass('selected');
-});
 
-$(document).on('click', '#position_image', function () {
-    $('.resize-container.selected').on('mousedown touchstart', 'img', createImage.startMoving);
-});
+    images.push(photo);
 
-$(document).on('click', '#resize_image', function () {
-    $('.resize-container.selected').on('mousedown touchstart', '.resize-handle', createImage.startResize);
 });

@@ -1,5 +1,6 @@
 var ImagesService = require('./ImagesService.js');
 
+
 var LoadPic = (function LoadPic() {
     var loadedPictureBtn = $('#load_photo'),
         $fileInput = $("<input/>").attr('type', 'file'),
@@ -28,13 +29,14 @@ var LoadPic = (function LoadPic() {
 
     function picChange(event) {
 
-        makeImagesDisappear();
+   //     makeImagesDisappear();
         var fileInput = event.target.files;
 
         if (fileInput.length > 0) {
 
             var windowURL = window.URL || window.webkitURL;
             var picURL = windowURL.createObjectURL(fileInput[0]);
+            console.log(picURL);
             var globalCanvas = document.getElementById("test");
             globalCanvas.width = 700;
             globalCanvas.height = 500;
