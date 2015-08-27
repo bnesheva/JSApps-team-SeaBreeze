@@ -15,7 +15,7 @@ var resizeableImage = (function () {
     resizeableImage.init = function (src, className) {
 
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
-        $('main .container-fluid').prepend(imageLoaded);
+        $('main .container-fluid').append(imageLoaded);
 
         resizeableImage.name = className
         resizeableImage.image_target = $('.' + className).get(0);
@@ -223,8 +223,16 @@ var resizeableImage = (function () {
 
 //resizeableImage.init($('.resize-image'));
 //resizeableImage1($('.resize-image'));
+
+function getSelectedImageURL(url) {
+    return chosenPhotoURL = url;
+}
+
+
 var chosenPhoto = 'images/test_photo.jpg';
-var imgSelector = 'img[src$="test_photo.jpg"]'
+var imgSelector = 'img[src$="test_photo.jpg"]';
+var chosenPhoto2 = 'images/star.png';
+var imgSelector2 = 'img[src$="star.png"]'
 
 var images = [];
 
@@ -243,21 +251,44 @@ $(document).on('click', '#load_photo', function () {
     photo = (function (parent) {
         var photo = Object.create(parent, {});
 
-        photo.init = function (chosenPhoto) {
-            parent.init.call(this, chosenPhoto);
+        photo.init = function (chosenPhoto, className) {
+            parent.init.call(this, chosenPhoto, className);
         };
         photo.name = 'photo';
 
         return photo;
     }(resizeableImage));
 
-    photo.init(chosenPhoto);
+    photo.init(chosenPhoto, 'photo');
     
     $('.resize-container').removeClass('selected');
-    var imgSelector = 'img[src$="test_photo.jpg"]';
     var $outer = $(imgSelector).parent('.resize-container');
     $outer.addClass('photo selected');
 
     images.push(photo);
 
 });
+$(document).on('click', '#add_sticker', function () {
+    sticker = (function (parent) {
+        var sticker = Object.create(parent, {});
+
+        sticker.init = function (chosenPhoto, className) {
+            parent.init.call(this, chosenPhoto, className);
+        };
+        sticker.name = 'photo';
+
+        return sticker;
+    }(resizeableImage));
+
+   sticker.init(chosenPhoto2, 'sticker');
+
+    $('.resize-container').removeClass('selected');
+    var $outer = $(imgSelector2).parent('.resize-container');
+    $outer.addClass('sticker selected');
+
+    images.push(photo);
+
+});
+
+//hide canvas
+$('canvas').hide();
