@@ -229,12 +229,30 @@ var resizeableImage = (function () {
 
 }());
 
-//resizeableImage.init($('.resize-image'));
-//resizeableImage1($('.resize-image'));
 
 //to ge the url from the loader but not working...
 function getSelectedImageURL(url) {
     return chosenPhotoURL = url;
+}
+
+function removeImage(name) {
+    var removed = $.grep(images, function (e) {
+        return e.name != name;
+    });
+    images = removed;
+}
+function getStickerUrl() {
+    if ($('.sticker_thumbnail.selected').length > 0) {
+        var img = $('.sticker_thumbnail.selected').find('img').get(0);
+        var src = $(img).attr('src');
+        return src;
+    }
+}
+
+function splitUrl(url) {
+    var splittedUrl = url.split('/');
+    var filename = splittedUrl[splittedUrl.length - 1];
+    return 'img[src$="' + filename + '"]'
 }
 
 var imageAddings = {
@@ -262,86 +280,40 @@ var imageAddings = {
 
         images.push(photo);
 
+    },
+    addSticker: function () {
+        $('.sticker_thumbnail').removeClass('selected');
+        $(this).addClass('selected');
+        var src = getStickerUrl();
+        var sticker = (function (parent) {
+            var sticker = Object.create(parent, {});
+
+            sticker.init = function (chosenPhoto, className) {
+                parent.init.call(this, chosenPhoto, className);
+            };
+
+            return sticker;
+        }(resizeableImage));
+
+        sticker.init(src, 'sticker');
+
+        $('.resize-container').removeClass('selected');
+
+
+        var selector = splitUrl(src);
+        var $outer = $(selector).parent('.resize-container');
+        $outer.addClass('sticker selected');
+
+        images.push(sticker);
     }
 }
-
-function removeImage(name) {
-    var removed = $.grep(images, function (e) {
-        return e.name != name;
-    });
-    images = removed;
-}
-function getStickerUrl() {
-    if ($('.sticker_thumbnail.selected').length > 0) {
-        var img = $('.sticker_thumbnail.selected').find('img').get(0);
-        var src = $(img).attr('src');
-        return src;
-    }
-}
-
-function splitUrl(url) {
-    var splittedUrl = url.split('/');
-    var filename = splittedUrl[splittedUrl.length - 1];
-    return 'img[src$="' + filename + '"]'
-}
-
-
-$('.sticker_thumbnail').on('click', function () {
-    $('.sticker_thumbnail').removeClass('selected');
-    $(this).addClass('selected');
-    var src = getStickerUrl();
-    var sticker = (function (parent) {
-        var sticker = Object.create(parent, {});
-
-        sticker.init = function (chosenPhoto, className) {
-            parent.init.call(this, chosenPhoto, className);
-        };
-
-        return sticker;
-    }(resizeableImage));
-
-    sticker.init(src, 'sticker');
-
-    $('.resize-container').removeClass('selected');
-
-
-    var selector = splitUrl(src);
-    var $outer = $(selector).parent('.resize-container');
-    $outer.addClass('sticker selected');
-
-    images.push(sticker);
-
-});
-
-
 
 //temp vars to test
 var chosenPhoto = 'images/test_photo.jpg';
-var chosenPhoto2 = 'images/star.png';
-var imgSelector2 = 'img[src$="star.png"]'
 
 
-$(document).on('click', '#load_photo', imageAddings.addPhoto);
-$(document).on('click', '#add_sticker', function () { //will move it to imageAddings object when done
-    var sticker = (function (parent) {
-        var sticker = Object.create(parent, {});
-
-        sticker.init = function (chosenPhoto, className) {
-            parent.init.call(this, chosenPhoto, className);
-        };
-
-        return sticker;
-    }(resizeableImage));
-
-   sticker.init(chosenPhoto2, 'sticker');
-
-    $('.resize-container').removeClass('selected');
-    var $outer = $(imgSelector2).parent('.resize-container');
-    $outer.addClass('sticker selected');
-
-    images.push(sticker);
-
-});
+$('.sticker_thumbnail').on('click', imageAddings.addSticker);
+$('#load_photo').on('click', imageAddings.addPhoto);
 
 //hide canvas
 $('.test').hide();
