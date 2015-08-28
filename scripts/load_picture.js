@@ -1,4 +1,4 @@
-var ImagesService = require('./ImagesService.js');
+var ImagesService = require('./services/ImagesService.js');
 
 var LoadPic = (function LoadPic() {
     var loadedPictureBtn = $('#load_photo'),

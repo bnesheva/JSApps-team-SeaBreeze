@@ -1,7 +1,7 @@
 /**
  * Created by Nick on 26/8/2015.
  */
-var ImagesService = require('./ImagesService.js');
+var ImagesService = require('./services/ImagesService.js');
 var LoadPicModule = require('./load_picture.js');
 
 // app start point
