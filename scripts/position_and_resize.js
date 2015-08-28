@@ -1,7 +1,8 @@
 // Resize and position image
-console.log('loaded')
+//console.log('loaded')
+var images = [];
 var resizeableImage = (function () {
-    console.log('created');
+   // console.log('created');
     var $container,
         orig_src = new Image(),
         event_state = {},
@@ -11,6 +12,12 @@ var resizeableImage = (function () {
         max_width = 1800,
         max_height = 1900,
         resize_canvas = document.createElement('canvas');
+
+    function getTargetImg(className) {
+        var len = $('.' + className).length;
+        return $('.' + className).get(len - 1);
+    }
+
     var resizeableImage = Object.create({});
     resizeableImage.init = function (src, className) {
 
@@ -18,7 +25,8 @@ var resizeableImage = (function () {
         $('main .container-fluid').append(imageLoaded);
 
         resizeableImage.name = className
-        resizeableImage.image_target = $('.' + className).get(0);
+        resizeableImage.image_target = getTargetImg(className);
+          //  $('.' + className).get(0);
         // When resizing, we will always use this copy of the original as the base
         orig_src.src = resizeableImage.image_target.src;
 
@@ -35,7 +43,7 @@ var resizeableImage = (function () {
         // Add events
         $container.on('mousedown touchstart', '.resize-handle', resizeableImage.startResize);
         $container.on('mousedown touchstart', 'img', resizeableImage.startMoving);
-        $('.js-crop').on('click', resizeableImage.crop);
+        //$('.js-crop').on('click', resizeableImage.crop);
 
         return this;
     };
@@ -197,7 +205,7 @@ var resizeableImage = (function () {
         console.log($container);
     };
 
-    resizeableImage.crop = function () {
+    /*resizeableImage.crop = function () {
         //Find the part of the image that is inside the crop box
 
         var crop_canvas,
@@ -213,7 +221,7 @@ var resizeableImage = (function () {
         crop_canvas.getContext('2d').drawImage(resizeableImage.image_target, left, top, width, height, 0, 0, width, height);
         window.open(crop_canvas.toDataURL("image/png"));
     }
-
+    */
 
 
     //final return
@@ -224,17 +232,37 @@ var resizeableImage = (function () {
 //resizeableImage.init($('.resize-image'));
 //resizeableImage1($('.resize-image'));
 
+//to ge the url from the loader but not working...
 function getSelectedImageURL(url) {
     return chosenPhotoURL = url;
 }
 
+var imageAddings = {
+    addPhoto: function () {
+        removeImage('photo');
+        if ($('.resize-container').hasClass('photo')) {
+            $('.resize-container.photo').remove();
+        }
+        var photo = (function (parent) {
+            var photo = Object.create(parent, {});
 
-var chosenPhoto = 'images/test_photo.jpg';
-var imgSelector = 'img[src$="test_photo.jpg"]';
-var chosenPhoto2 = 'images/star.png';
-var imgSelector2 = 'img[src$="star.png"]'
+            photo.init = function (chosenPhoto, className) {
+                parent.init.call(this, chosenPhoto, className);
+            };
 
-var images = [];
+            return photo;
+        }(resizeableImage));
+
+        photo.init(chosenPhoto, 'photo');
+
+        $('.resize-container').removeClass('selected');
+        var $outer = $(imgSelector).parent('.resize-container');
+        $outer.addClass('photo selected');
+
+        images.push(photo);
+
+    }
+}
 
 function removeImage(name) {
     var removed = $.grep(images, function (e) {
@@ -243,39 +271,22 @@ function removeImage(name) {
     images = removed;
 }
 
-$(document).on('click', '#load_photo', function () {
-    removeImage('photo');
-    if ($('.resize-container').hasClass('photo')) {
-        $('.resize-container.photo').remove();
-    }
-    photo = (function (parent) {
-        var photo = Object.create(parent, {});
 
-        photo.init = function (chosenPhoto, className) {
-            parent.init.call(this, chosenPhoto, className);
-        };
-        photo.name = 'photo';
+//temp vars to test
+var chosenPhoto = 'images/test_photo.jpg';
+var imgSelector = 'img[src$="test_photo.jpg"]';
+var chosenPhoto2 = 'images/star.png';
+var imgSelector2 = 'img[src$="star.png"]'
 
-        return photo;
-    }(resizeableImage));
 
-    photo.init(chosenPhoto, 'photo');
-    
-    $('.resize-container').removeClass('selected');
-    var $outer = $(imgSelector).parent('.resize-container');
-    $outer.addClass('photo selected');
-
-    images.push(photo);
-
-});
-$(document).on('click', '#add_sticker', function () {
-    sticker = (function (parent) {
+$(document).on('click', '#load_photo', imageAddings.addPhoto);
+$(document).on('click', '#add_sticker', function () { //will move it to imageAddings object when done
+    var sticker = (function (parent) {
         var sticker = Object.create(parent, {});
 
         sticker.init = function (chosenPhoto, className) {
             parent.init.call(this, chosenPhoto, className);
         };
-        sticker.name = 'photo';
 
         return sticker;
     }(resizeableImage));
@@ -286,9 +297,11 @@ $(document).on('click', '#add_sticker', function () {
     var $outer = $(imgSelector2).parent('.resize-container');
     $outer.addClass('sticker selected');
 
-    images.push(photo);
+    images.push(sticker);
 
 });
 
 //hide canvas
-$('canvas').hide();
+$('.test').hide();
+
+

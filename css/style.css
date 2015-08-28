@@ -3,16 +3,17 @@
 }
 .profile_popup {
     display: none;
+	z-index: 3;
+	position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 0 0 3px 3px;
+    width: 250px;
+    right: 0px;
 }
 .profile_holder:hover .profile_popup {
         display: block;
-        position: absolute;
-        background: #333;
-        color: #fff;
-        padding: 10px;
-        border-radius: 0 0 3px 3px;
-        width: 250px;
-        right: 0px;
 }
 .navbar-nav>li .profile_holder a {
     padding-top: 15px;
@@ -23,6 +24,16 @@ main .container-fluid {
     height: 500px;
     text-align: center;
 	position: relative;
+    width: 100vw;
+    left: -50vw;
+    margin-left: 150px;
+    margin-top: -100px;
+}
+#cropper {
+    width: 300px;
+    height: 300px;
+    margin: 100px auto;
+    border: 1px solid #0ff;
 }
 #toolbar {
     text-align: center;
@@ -87,19 +98,21 @@ Image editor from tutorial*/
 }
 
 .resize-container img {
-    display: block
+    display: block;
 }
-
-.resize-container:hover img,
-.resize-container:active img {
+.selected.resize-container img {
+    outline: 1px dashed rgba(222,60,80,.5);
+}
+.selected.resize-container:hover img,
+.selected.resize-container:active img {
     outline: 2px dashed rgba(222,60,80,.9);
 }
 
-.resize-handle-ne,
-.resize-handle-ne,
-.resize-handle-se,
-.resize-handle-nw,
-.resize-handle-sw {
+.selected .resize-handle-ne,
+.selected .resize-handle-ne,
+.selected .resize-handle-se,
+.selected .resize-handle-nw,
+.selected .resize-handle-sw {
     position: absolute;
     display: block;
     width: 10px;
