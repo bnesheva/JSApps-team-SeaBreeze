@@ -60,8 +60,11 @@
 				<div class="overlay-inner">
 				</div>
 			</div>
-
-
+            <video autoplay id="camera"></video>
+            <img src="" id="shot">
+            <div id="shotButtonWrapper">
+                <button id="takeShot">Test Button</button>
+            </div>
 			<button class="btn-crop js-crop">Crop</button>
 		</div>
     </div>
@@ -72,6 +75,7 @@
     <button id="save_image_button" class="btn btn-default">Save</button>
     <button id="resize_image" class="btn btn-default">Resize</button>
     <button id="add_sticker" class="btn btn-default">Add Sticker</button>
+    <button id="take_snapshot" class="btn btn-default">Take Photo</button>
     <button id="share_picture" class="btn btn-default">
 		<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
             Share
@@ -109,7 +113,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!--<script src="scripts/load_picture.js"></script>-->
+<script src="scripts/take_photo.js"></script>
 <script src="scripts/position_and_resize.js"></script>
 </body>
 </html>

@@ -221,3 +221,25 @@ Image editor from tutorial*/
     position: fixed;
     top: -1000px;
 }
+
+video {
+    width: 307px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+}
+
+#shot {
+    border: 1px solid #ccc;
+    width: 350px;
+    height: 250px;
+}
+
+#camera {
+    display: none;
+}
+
+#shotButtonWrapper {
+    display: none;
+}
+
