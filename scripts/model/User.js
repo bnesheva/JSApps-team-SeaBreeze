@@ -1,13 +1,11 @@
-var user = (function () {
-    var currentID = 0,
-		user = Object.create({});
+var User = (function () {
+    var user = Object.create({});
 
     Object.defineProperty(user, 'init', {
-		value: function (username, password, userImages) {
+		value: function (id, username, password, userImages) {
 			this.username = username;
 			this.password = password;
-			currentID += 1;
-			this._id = currentID;
+			this._id = id;
 			this._userImages = userImages || [];
 			return this;
 		}
@@ -23,15 +21,6 @@ var user = (function () {
 		get: function () {
 			return this._username;
 		}, 
-		set: function (value) {
-			this._username = value;
-		}
-	});
-
-	Object.defineProperty(user, 'username', {
-		get: function () {
-			return this._username;
-		},
 		set: function (value) {
 			this._username = value;
 		}
@@ -65,4 +54,4 @@ var user = (function () {
     return user;
 })();
 
-module.exports = user;
+module.exports = User;
