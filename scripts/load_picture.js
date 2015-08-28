@@ -1,6 +1,5 @@
 var ImagesService = require('./ImagesService.js');
 
-
 var LoadPic = (function LoadPic() {
     var loadedPictureBtn = $('#load_photo'),
         $fileInput = $("<input/>").attr('type', 'file'),
@@ -36,18 +35,21 @@ var LoadPic = (function LoadPic() {
 
             var windowURL = window.URL || window.webkitURL;
             var picURL = windowURL.createObjectURL(fileInput[0]);
-            console.log(picURL);
+
+            //console.log(picURL);
+            imageSrc = picURL;
+
             var globalCanvas = document.getElementById("test");
             globalCanvas.width = 700;
             globalCanvas.height = 500;
             var ctx = globalCanvas.getContext("2d");
 
-            var photo = new Image();
+            var photo =document.createElement('img');
+            photo.src = picURL;
+
             photo.onload = function () {
                 ctx.drawImage(photo, 0, 10, 700, 400);
             };
-
-            photo.src = picURL;
         }
     }
 })();

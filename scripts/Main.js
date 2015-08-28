@@ -10,10 +10,12 @@ var LoadPicModule = require('./load_picture.js');
 var Main = (function () {
     var Service = {};
 
+
     Service.main = function() {
         var IS = Object.create(ImagesService).init();
 
         LoadPicModule;
+
 
         var $fileInput = $('<input/>')
             .attr('type', "file")
@@ -23,7 +25,10 @@ var Main = (function () {
             console.log(this.files[0]);
             IS.UploadImage(this.files[0]);
         });
+
+        console.log(LoadPicModule);
     };
+
 
     return Service;
 })();

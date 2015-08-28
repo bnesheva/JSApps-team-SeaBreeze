@@ -41,6 +41,7 @@ takePictureButton.addEventListener('click', function () {
             ctx.drawImage(video, -50, -150);
             document.querySelector('img').src = canvas.toDataURL('image/webp');
             video.style.display='none';
+            showButton.style.display='none';
         }
     }
 
