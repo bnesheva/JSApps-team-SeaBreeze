@@ -16,7 +16,7 @@ var LoadPic = (function LoadPic() {
     });
 
     $saveButton.on('click', function () {
-        IS.UploadImage($fileInput[0].files[0]);
+        IS.UploadImage($fileInput[0].files[0], 'dbc49940-4bd5-11e5-bcb6-5b2a88304013');
     });
 
     function makeImagesDisappear() {

@@ -8,13 +8,12 @@ var ImagesService = (function () {
     var ImagesService = {},
         DB;
     
-    
     ImagesService.init = function() {
         DB = Object.create(DBOperations).init();
         return this;
     };
 
-    ImagesService.UploadImage = function(inputFile) {
+    ImagesService.UploadImage = function(inputFile, userId) {
         var img,
             imgData,
             FR= new FileReader();
@@ -25,7 +24,8 @@ var ImagesService = (function () {
             img = {
                 "Filename": inputFile.name,
                 "ContentType": inputFile.type,
-                "base64": imgData
+                "base64": imgData,
+                "UserId": userId
             };
 
             DB.AddImage(img);

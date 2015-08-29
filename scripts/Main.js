@@ -3,6 +3,7 @@
  */
 var ImagesService = require('./services/ImagesService.js');
 var LoadPicModule = require('./load_picture.js');
+var DB = require('./DBOperations.js');
 
 // app start point
 // Temp
@@ -10,11 +11,11 @@ var LoadPicModule = require('./load_picture.js');
 var Main = (function () {
     var Service = {};
 
-
     Service.main = function() {
         var IS = Object.create(ImagesService).init();
 
         LoadPicModule;
+
 
 
         var $fileInput = $('<input/>')
@@ -22,13 +23,9 @@ var Main = (function () {
             .appendTo(document.body);
 
         $fileInput.on('change', function() {
-            console.log(this.files[0]);
             IS.UploadImage(this.files[0]);
         });
-
-        console.log(LoadPicModule);
     };
-
 
     return Service;
 })();
