@@ -7,7 +7,7 @@ var resizeableImage = (function () {
         orig_src = new Image(),
         event_state = {},
         constrain = false,
-        min_width = 40, 
+        min_width = 40,
         min_height = 40,
         max_width = 1800,
         max_height = 1900,
@@ -39,15 +39,16 @@ var resizeableImage = (function () {
 
     var resizeableImage = Object.create({});
     resizeableImage.init = function (src, className) {
-        var id = imageIdCounter +=1;
+        var id = imageIdCounter += 1;
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
         if (className === 'photo') {
             $('main .container-fluid').prepend(imageLoaded);
         }
         else {
             $('main .container-fluid').append(imageLoaded);
-        };
-        
+        }
+        ;
+
 
         resizeableImage.image_target = getTargetImg(className);
         // When resizing, we will always use this copy of the original as the base
@@ -55,10 +56,10 @@ var resizeableImage = (function () {
 
         // Wrap the image with the container and add resize handles
         $(resizeableImage.image_target).wrap('<div id="id-' + id + '"class="resize-container"></div>')
-        .before('<span class="resize-handle resize-handle-nw"></span>')
-        .before('<span class="resize-handle resize-handle-ne"></span>')
-        .after('<span class="resize-handle resize-handle-se"></span>')
-        .after('<span class="resize-handle resize-handle-sw"></span>');
+            .before('<span class="resize-handle resize-handle-nw"></span>')
+            .before('<span class="resize-handle resize-handle-ne"></span>')
+            .after('<span class="resize-handle resize-handle-se"></span>')
+            .after('<span class="resize-handle resize-handle-sw"></span>');
 
         // Assign the container to a variable
         $container = $('#id-' + id + '.resize-container');
@@ -107,7 +108,7 @@ var resizeableImage = (function () {
         $(document).off('mousemove touchmove', resizeableImage.resizing);
 
         var containerId = ($container.attr('id'));
-       
+
         var currentContainerObj = getCurrentContainer(containerId);
         currentContainerObj.containerWidth = $container.width();
         currentContainerObj.containerHeight = $container.height();
@@ -161,11 +162,12 @@ var resizeableImage = (function () {
             // To improve performance you might limit how often resizeImage() is called
             resizeableImage.resizeImage(width, height);
             // Without this Firefox will not re-calculate the the image dimensions until drag end
-            $container.offset({ 'left': left, 'top': top });
+            $container.offset({'left': left, 'top': top});
         }
     }
 
-    resizeableImage.resizeImage = function (width, height) {;
+    resizeableImage.resizeImage = function (width, height) {
+        ;
         resize_canvas.width = width;
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
@@ -262,7 +264,7 @@ function splitUrl(url) {
 }
 
 var imageAddings = {
-    addPhoto: function () {
+    addPhoto: function (picUrl) {
         removeImage('photo');
         if ($('.resize-container').hasClass('photo')) {
             $('.resize-container.photo').remove();
@@ -277,17 +279,17 @@ var imageAddings = {
             return photo;
         }(resizeableImage));
 
-        photo.init(chosenPhoto, 'photo');
+        photo.init(picUrl, 'photo');
 
         $('.resize-container').removeClass('selected');
-        var selector = splitUrl(chosenPhoto);
+        var selector = splitUrl(picUrl);
         var $outer = $(selector).parent('.resize-container');
         $outer.addClass('photo selected');
 
 
         photo.name = 'photo';
         photo.containerId = $outer.attr('id');
-        photo.image = chosenPhoto;
+        photo.image = picUrl;
         images.push(photo);
 
     },
@@ -326,12 +328,11 @@ var imageAddings = {
 }
 
 //temp vars to test
-var chosenPhoto = 'images/test_photo.jpg';
+//var chosenPhoto = 'images/test_photo.jpg';
 
 
 $('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
 //('#load_photo').on('click', imageAddings.addPhoto);
-
 
 
 function getUploadedPicURL(event) {
@@ -369,6 +370,7 @@ crop = function () {
         crop_canvas.width = width;
         crop_canvas.height = height;
 
+        debugger
         for (i = 0; i < len; i += 1) {
             imgToDrawSrc = images[i].image;
             if (images[i].containerLeft !== undefined) {
@@ -376,13 +378,16 @@ crop = function () {
                 top = $('.overlay').offset().top - images[i].containerTop;
             }
             else {
-                left = -width/2;
-                top = -height/2;
+                left = -width / 2;
+                top = -height / 2;
             }
             widthToDraw = images[i].containerWidth;
             heightToDraw = images[i].containerHeight;
-            toGet = $("img[src='" + imgToDrawSrc + "']").length;
-            imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
+
+            var element = $("img[src='" + imgToDrawSrc + "']");
+            toGet = element.length;
+            imgToDraw = element.get(toGet - 1);
+            //imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
             crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
         }
 

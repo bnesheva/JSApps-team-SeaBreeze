@@ -27,8 +27,9 @@ var LoadPic = (function LoadPic() {
 
             var windowURL = window.URL || window.webkitURL;
             var picURL = windowURL.createObjectURL(fileInput[0]);
-            var photoTest = Object.create(resizeableImage).init(picURL, 'photo');
-            imageAddings.addPhoto();
+            // is not workig without next line
+           // var photoTest = Object.create(resizeableImage).init(picURL, 'photo');
+            imageAddings.addPhoto(picURL);
         }
     }
 })();
