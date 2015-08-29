@@ -51,31 +51,26 @@
     </nav>
 </header>
 <main>
-	<div id="cropper">
-		<div class="container-fluid">
-			<img class="resize-image" src="images/test_photo.jpg" alt="Photo"/>
-			<img class="resize-image2" src="images/test_photo.jpg" alt="Photo"/>
-			<canvas id="test"></canvas>
-			<div class="overlay">
-				<div class="overlay-inner">
-				</div>
+	<div class="container-fluid">
+		<canvas id="test"></canvas>
+		<div class="overlay">
+			<div class="overlay-inner">
 			</div>
-            <video autoplay id="camera"></video>
-            <img src="" id="shot">
-            <div id="shotButtonWrapper">
-                <button id="takeShot">Test Button</button>
-            </div>
-			<button class="btn-crop js-crop">Crop</button>
 		</div>
-    </div>
+        <video autoplay id="camera"></video>
+        <img src="" id="shot">
+        <div id="shotButtonWrapper">
+            <button id="takeShot">Test Button</button>
+        </div>
+	</div>
 </main>
 <aside id="toolbar">
     <!--<input id="fileInput" type="file" accept="image"/>-->
     <button id="load_photo" class="btn btn-default">Load</button>
-    <button id="save_image_button" class="btn btn-default">Save</button>
-    <button id="resize_image" class="btn btn-default">Resize</button>
-    <button id="add_sticker" class="btn btn-default">Add Sticker</button>
-    <button id="take_snapshot" class="btn btn-default">Take Photo</button>
+	<button id="take_snapshot" class="btn btn-default">Take Photo</button>
+	<button id="reset" class="btn btn-default">Reset</button>
+    <button id="crop_image" class="btn btn-default">Crop</button>
+	<button id="save_image_button" class="btn btn-default">Save</button>
     <button id="share_picture" class="btn btn-default">
 		<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
             Share
