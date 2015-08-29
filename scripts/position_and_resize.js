@@ -118,12 +118,7 @@ var resizeableImage = (function () {
     };
 
     resizeableImage.resizing = function (e) {
-        var mouse = {},
-            width,
-            height,
-            left,
-            top,
-            offset = $container.offset();
+        var mouse = {}, width, height, left, top, offset = $container.offset();
         mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
 
@@ -242,25 +237,6 @@ var resizeableImage = (function () {
   //      console.log('move')
    //     console.log($container);
     };
-    /*
-    resizeableImage.crop = function () {
-        //Find the part of the image that is inside the crop box
-
-        var crop_canvas,
-            left = $('.overlay').offset().left - $container.offset().left,
-            top = $('.overlay').offset().top - $container.offset().top,
-            width = $('.overlay').width(),
-            height = $('.overlay').height();
-
-        crop_canvas = document.createElement('canvas');
-        crop_canvas.width = width;
-        crop_canvas.height = height;
-
-        crop_canvas.getContext('2d').drawImage(resizeableImage.image_target, left, top, width, height, 0, 0, width, height);
-        window.open(crop_canvas.toDataURL("image/png"));
-    }
-    
-    */
 
     //final return
     return resizeableImage;
@@ -366,8 +342,7 @@ var chosenPhoto = 'images/test_photo.jpg';
 $('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
 $('#load_photo').on('click', imageAddings.addPhoto);
 
-//hide canvas
-$('.test').hide();
+
 
 function getUploadedPicURL(event) {
     console.log('my event');
@@ -393,17 +368,8 @@ $("<input/>").attr('type', 'file').on('change', function (e) {
 crop = function () {
     //Find the part of the image that is inside the crop box
 
-    var crop_canvas,
-        $container,
-        left,
-        top,
-        imgToDrawSrc,
-        toGet,
-        imgToDraw,
-        widthToDraw,
-        heightToDraw,
+    var crop_canvas, $container, left, top, imgToDrawSrc, toGet, imgToDraw, widthToDraw, heightToDraw, i,
         len = images.length,
-        i,
         width = $('.overlay').width(),
         height = $('.overlay').height();
 
@@ -441,10 +407,12 @@ crop = function () {
     }
 }
 
-
-
-
 $('#crop_image').on('click', crop);
 $('#reset').on('click', function () {
     window.location.reload()
+});
+
+////// fake functionality for the login
+$(document).on('click', $('.login'), function () {
+    $('#welcome_screen').hide();
 });
