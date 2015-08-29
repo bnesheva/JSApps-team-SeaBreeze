@@ -54,8 +54,8 @@ main .container-fluid {
 	background: transparent;
 }
 .sticker_thumbnail {
-    width: 130px;
-    height: 130px;
+    width: 84px;
+    height: 84px;
     border: 1px solid #eee;
     margin: 5px;
     display: inline-block;
@@ -119,6 +119,21 @@ main .container-fluid > img {
 		border-color: #999;
 		background-color: #fff;
 		box-shadow: 0 0 5px rgba(0,0,0,.3);
+	}
+	.sticker_thumbnail {
+		width: 130px;
+		height: 130px;
+		border: 1px solid #eee;
+		margin: 5px;
+		display: inline-block;
+		text-align: center;
+		overflow: hidden;
+	}
+}
+@media screen and (min-width: 768px) {
+	.sticker_thumbnail {
+		width: 150px;
+		height: 150px;
 	}
 }
 /******=====================================

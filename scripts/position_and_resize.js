@@ -3,7 +3,6 @@
 var images = [];
 var imageIdCounter = 0;
 var resizeableImage = (function () {
-   // console.log('created');
     var $container,
         orig_src = new Image(),
         event_state = {},
@@ -42,10 +41,15 @@ var resizeableImage = (function () {
     resizeableImage.init = function (src, className) {
         var id = imageIdCounter +=1;
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
-        $('main .container-fluid').append(imageLoaded);
+        if (className === 'photo') {
+            $('main .container-fluid').prepend(imageLoaded);
+        }
+        else {
+            $('main .container-fluid').append(imageLoaded);
+        };
+        
 
         resizeableImage.image_target = getTargetImg(className);
-          //  $('.' + className).get(0);
         // When resizing, we will always use this copy of the original as the base
         orig_src.src = resizeableImage.image_target.src;
 
@@ -62,7 +66,6 @@ var resizeableImage = (function () {
         // Add events
         $container.on('mousedown touchstart', '.resize-handle', resizeableImage.startResize);
         $container.on('mousedown touchstart', 'img', resizeableImage.startMoving);
-        //$('.js-crop').on('click', resizeableImage.crop);
 
         return this;
     };
@@ -75,8 +78,6 @@ var resizeableImage = (function () {
         event_state.container_top = $container.offset().top;
         event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-
-
 
         // This is a fix for mobile safari
         // For some reason it does not allow a direct copy of the touches property
@@ -162,13 +163,9 @@ var resizeableImage = (function () {
             // Without this Firefox will not re-calculate the the image dimensions until drag end
             $container.offset({ 'left': left, 'top': top });
         }
-       // console.log('resize')
-      //  console.log($container);
     }
 
-    resizeableImage.resizeImage = function (width, height) {
-     //   console.log('now resizing ' + width + ' ' + height);
-     //   console.log(resize_canvas);
+    resizeableImage.resizeImage = function (width, height) {;
         resize_canvas.width = width;
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
@@ -195,8 +192,6 @@ var resizeableImage = (function () {
         currentContainerObj.containerHeight = $container.height();
         currentContainerObj.containerLeft = $container.offset().left;
         currentContainerObj.containerTop = $container.offset().top;
-
-       // console.log(currentContainerObj);
     };
 
     resizeableImage.moving = function (e) {
@@ -234,15 +229,12 @@ var resizeableImage = (function () {
             // To improve performance you might limit how often resizeImage() is called
             resizeableImage.resizeImage(width, height);
         }
-  //      console.log('move')
-   //     console.log($container);
     };
 
     //final return
     return resizeableImage;
 
 }());
-
 
 //to ge the url from the loader but not working...
 function getSelectedImageURL(url) {
@@ -262,8 +254,6 @@ function getStickerUrl() {
         return src;
     }
 }
-
-
 
 function splitUrl(url) {
     var splittedUrl = url.split('/');
@@ -381,7 +371,6 @@ crop = function () {
 
         for (i = 0; i < len; i += 1) {
             imgToDrawSrc = images[i].image;
-            // console.log(images[i]);
             if (images[i].containerLeft !== undefined) {
                 left = $('.overlay').offset().left - images[i].containerLeft;
                 top = $('.overlay').offset().top - images[i].containerTop;
@@ -394,9 +383,6 @@ crop = function () {
             heightToDraw = images[i].containerHeight;
             toGet = $("img[src='" + imgToDrawSrc + "']").length;
             imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
-
-            //  console.log(imgToDraw);
-            //  console.log(left, top, width, height);
             crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
         }
 
