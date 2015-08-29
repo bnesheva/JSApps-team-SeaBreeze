@@ -7,16 +7,16 @@ var LoadPic = (function LoadPic() {
 
         IS = Object.create(ImagesService).init();
 
-    loadedPictureBtn.on('click', function () {
-        $fileInput.click();
-    });
+        loadedPictureBtn.on('click', function () {
+            $fileInput.click();
+        });
 
     $fileInput.on('change', function (e) {
         picChange(e)
     });
 
     $saveButton.on('click', function () {
-        IS.UploadImage($fileInput[0].files[0]);
+        IS.UploadImage($fileInput[0].files[0], 'dbc49940-4bd5-11e5-bcb6-5b2a88304013');
     });
 
     function makeImagesDisappear() {

@@ -50,16 +50,10 @@ var DBOperationsService = (function () {
         });
     };
 
-    DBService.GetAllImages = function(handleData) {
+    DBService.GetAllImages = function() {
         $.ajax({
             type: 'GET',
-            url: 'http://api.everlive.com/v1/' + APIKey + '/Files',
-            success: function(files) {
-                handleData(files);
-            },
-            error: function() {
-                throw new Exception('GetAllImages: failed');
-            }
+            url: 'http://api.everlive.com/v1/' + APIKey + '/Files'
         })
     };
 

@@ -13,10 +13,10 @@ var ImagesService = (function () {
         return this;
     };
 
-    ImagesService.UploadImage = function(inputFile) {
+    ImagesService.UploadImage = function(inputFile, userId /*, accessToken*/) {
         var img,
             imgData,
-            FR= new FileReader();
+            FR = new FileReader();
 
         FR.onload = function() {
             imgData = FR.result.split(',')[1];
@@ -24,7 +24,8 @@ var ImagesService = (function () {
             img = {
                 "Filename": inputFile.name,
                 "ContentType": inputFile.type,
-                "base64": imgData
+                "base64": imgData,
+                "UserId": userId
             };
 
             DB.AddImage(img);

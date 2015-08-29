@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83c45a08-dc5c-4801-adcf-8a9f3ee91188" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DBOperations.js" afterPath="$PROJECT_DIR$/scripts/DBOperations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DBOperationsService.js" afterPath="$PROJECT_DIR$/scripts/DBOperationsService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/ImagesService.js" afterPath="$PROJECT_DIR$/scripts/ImagesService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Main.js" afterPath="$PROJECT_DIR$/scripts/Main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/load_picture.js" afterPath="$PROJECT_DIR$/scripts/load_picture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/take_photo.js" afterPath="$PROJECT_DIR$/scripts/take_photo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JSApps-team-SeaBreeze.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,24 +26,14 @@
     <favorites_list name="JSApps-team-SeaBreeze" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5900086">
+    <splitter split-orientation="horizontal" split-proportion="0.80505955">
       <split-first>
         <leaf>
           <file leaf-file-name="load_picture.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/scripts/load_picture.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="take_photo.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scripts/take_photo.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4520548">
-                  <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+                  <caret line="18" column="84" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
                   <folding />
                 </state>
               </provider>
@@ -52,7 +43,27 @@
             <entry file="file://$PROJECT_DIR$/scripts/Main.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+                  <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DBOperations.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scripts/DBOperations.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="1.5826087">
+                  <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ImagesService.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/ImagesService.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="27" column="32" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -61,8 +72,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+                <state vertical-scroll-proportion="-23.076923">
+                  <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="109" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -75,7 +86,7 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.08586762">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="24" column="20" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="20" />
                   <folding />
                 </state>
@@ -99,16 +110,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scripts/DBOperationsService.js" />
         <option value="$PROJECT_DIR$/scripts/OperationsService.js" />
         <option value="$PROJECT_DIR$/scripts/Image.js" />
-        <option value="$PROJECT_DIR$/scripts/DBOperations.js" />
-        <option value="$PROJECT_DIR$/scripts/ImagesService.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/scripts/Main.js" />
-        <option value="$PROJECT_DIR$/scripts/load_picture.js" />
         <option value="$PROJECT_DIR$/scripts/take_photo.js" />
+        <option value="$PROJECT_DIR$/scripts/DBOperationsService.js" />
+        <option value="$PROJECT_DIR$/scripts/ImagesService.js" />
+        <option value="$PROJECT_DIR$/scripts/DBOperations.js" />
+        <option value="$PROJECT_DIR$/scripts/load_picture.js" />
+        <option value="$PROJECT_DIR$/scripts/Main.js" />
       </list>
     </option>
   </component>
@@ -120,10 +131,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="84" />
+    <option name="y" value="11" />
+    <option name="width" value="1596" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -148,7 +159,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -197,7 +208,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,10 +283,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="84" y="11" width="1596" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10714286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1493671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -307,11 +318,43 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/scripts/load_picture.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/take_photo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/load_picture.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -449,20 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/DBOperations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ImagesService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.739726">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -470,18 +499,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/scripts/take_photo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+    <entry file="file://$PROJECT_DIR$/scripts/DBOperationsService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7576087">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ImagesService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -489,15 +526,31 @@
     <entry file="file://$PROJECT_DIR$/scripts/load_picture.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <caret line="18" column="84" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/take_photo.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4520548">
-          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+        <state vertical-scroll-proportion="-23.076923">
+          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="109" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/DBOperations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5826087">
+          <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
           <folding />
         </state>
       </provider>

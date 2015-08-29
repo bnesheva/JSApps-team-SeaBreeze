@@ -15,23 +15,16 @@ var DBOperationsService = (function () {
         return this;
     };
 
-    DBService.GetAllUsers = function(handleData) {
+    DBService.GetAllUsers = function() {
         return (
             $.ajax({
                 type: 'GET',
-                url: 'http://api.everlive.com/v1/' + APIKey + '/Users',
-                success: function(users) {
-                    handleData(users);
-                },
-                error: function() {
-                    throw new Exception('GetAllUsers(): failed');
-                }
+                url: 'http://api.everlive.com/v1/' + APIKey + '/Users'
             })
         )
     };
 
     DBService.AddUser = function(user) {
-
         $.ajax({
             type: 'POST',
             contentType: "application/json",
@@ -48,19 +41,12 @@ var DBOperationsService = (function () {
     };
 
     DBService.GetAllImages = function() {
-        return $.ajax({
+        return (
+            $.ajax({
                 type: 'GET',
-                url: 'http://api.everlive.com/v1/' + APIKey + '/Files',
-                //success: function(files) {
-                //    var k = function() {
-                //        return files
-                //    };
-                //    return k;
-                //},
-                //error: function() {
-                //    throw new Exception('GetAllImages: failed');
-                //}
+                url: 'http://api.everlive.com/v1/' + APIKey + '/Files'
             })
+        )
     };
 
     DBService.AddImage = function(image) {
@@ -79,9 +65,35 @@ var DBOperationsService = (function () {
         });
     };
 
-    DBService.GetImgsByUser = function(user) {
-        'TODO'
-    }
+    DBService.GetUserById = function(userId) {
+        return (
+            $.ajax({
+                url: 'http://api.everlive.com/v1/' + APIKey + '/Users/' + userId,
+                type: "GET"
+                //headers: {"Authorization" : "Bearer your-access-token-here",
+                //    "X-Everlive-Filter" : JSON.stringify(filter) }
+                //success: function(data){
+                //    alert(JSON.stringify(data));
+                //},
+                //error: function(error){
+                //    alert(JSON.stringify(error));
+                //}
+            })
+        );
+    };
+
+    DBService.GetImgsByUserId = function(userId) {
+        var filter = { "UserId" : userId };
+
+        return (
+            $.ajax({
+                url: 'http://api.everlive.com/v1/' + APIKey + '/Files/',
+                type: "GET",
+                headers: { //"Authorization" : "Bearer your-access-token-here",
+                    "X-Everlive-Filter" : JSON.stringify(filter) }
+            })
+        );
+    };
 
     DBService.DeleteImage = function() {
         'TODO:..'
