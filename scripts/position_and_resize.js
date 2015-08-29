@@ -7,7 +7,7 @@ var resizeableImage = (function () {
         orig_src = new Image(),
         event_state = {},
         constrain = false,
-        min_width = 40,
+        min_width = 40, 
         min_height = 40,
         max_width = 1800,
         max_height = 1900,
@@ -27,7 +27,7 @@ var resizeableImage = (function () {
         if (len > 0) {
             for (i = 0; i < len; i += 1) {
                 if (images[i].containerId === id) {
-                    current = images[i]
+                    current = images[i];
                 }
             }
             return current;
@@ -39,16 +39,15 @@ var resizeableImage = (function () {
 
     var resizeableImage = Object.create({});
     resizeableImage.init = function (src, className) {
-        var id = imageIdCounter += 1;
+        var id = imageIdCounter +=1;
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
         if (className === 'photo') {
             $('main .container-fluid').prepend(imageLoaded);
         }
         else {
             $('main .container-fluid').append(imageLoaded);
-        }
-        ;
-
+        };
+        
 
         resizeableImage.image_target = getTargetImg(className);
         // When resizing, we will always use this copy of the original as the base
@@ -56,10 +55,10 @@ var resizeableImage = (function () {
 
         // Wrap the image with the container and add resize handles
         $(resizeableImage.image_target).wrap('<div id="id-' + id + '"class="resize-container"></div>')
-            .before('<span class="resize-handle resize-handle-nw"></span>')
-            .before('<span class="resize-handle resize-handle-ne"></span>')
-            .after('<span class="resize-handle resize-handle-se"></span>')
-            .after('<span class="resize-handle resize-handle-sw"></span>');
+        .before('<span class="resize-handle resize-handle-nw"></span>')
+        .before('<span class="resize-handle resize-handle-ne"></span>')
+        .after('<span class="resize-handle resize-handle-se"></span>')
+        .after('<span class="resize-handle resize-handle-sw"></span>');
 
         // Assign the container to a variable
         $container = $('#id-' + id + '.resize-container');
@@ -108,7 +107,7 @@ var resizeableImage = (function () {
         $(document).off('mousemove touchmove', resizeableImage.resizing);
 
         var containerId = ($container.attr('id'));
-
+       
         var currentContainerObj = getCurrentContainer(containerId);
         currentContainerObj.containerWidth = $container.width();
         currentContainerObj.containerHeight = $container.height();
@@ -162,16 +161,19 @@ var resizeableImage = (function () {
             // To improve performance you might limit how often resizeImage() is called
             resizeableImage.resizeImage(width, height);
             // Without this Firefox will not re-calculate the the image dimensions until drag end
-            $container.offset({'left': left, 'top': top});
+            $container.offset({ 'left': left, 'top': top });
         }
     }
 
-    resizeableImage.resizeImage = function (width, height) {
-        ;
+    resizeableImage.resizeImage = function (width, height) {;
         resize_canvas.width = width;
         resize_canvas.height = height;
         resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
         $(resizeableImage.image_target).attr('src', resize_canvas.toDataURL("image/png"));
+
+        var containerId = ($container.attr('id'));
+        var currentContainerObj = getCurrentContainer(containerId);
+        currentContainerObj.image = resize_canvas.toDataURL("image/png");
     };
 
     resizeableImage.startMoving = function (e) {
@@ -264,7 +266,7 @@ function splitUrl(url) {
 }
 
 var imageAddings = {
-    addPhoto: function (picUrl) {
+    addPhoto: function () {
         removeImage('photo');
         if ($('.resize-container').hasClass('photo')) {
             $('.resize-container.photo').remove();
@@ -279,17 +281,17 @@ var imageAddings = {
             return photo;
         }(resizeableImage));
 
-        photo.init(picUrl, 'photo');
+        photo.init(chosenPhoto, 'photo');
 
         $('.resize-container').removeClass('selected');
-        var selector = splitUrl(picUrl);
+        var selector = splitUrl(chosenPhoto);
         var $outer = $(selector).parent('.resize-container');
         $outer.addClass('photo selected');
 
 
         photo.name = 'photo';
         photo.containerId = $outer.attr('id');
-        photo.image = picUrl;
+        photo.image = chosenPhoto;
         images.push(photo);
 
     },
@@ -328,49 +330,28 @@ var imageAddings = {
 }
 
 //temp vars to test
-//var chosenPhoto = 'images/test_photo.jpg';
+var chosenPhoto = 'images/test_photo.jpg';
 
 
 $('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
-//('#load_photo').on('click', imageAddings.addPhoto);
+$('#load_photo').on('click', imageAddings.addPhoto);
 
-
-function getUploadedPicURL(event) {
-    console.log('my event');
-    var fileInput = event.target.files;
-
-    if (fileInput.length > 0) {
-
-        var windowURL = window.URL || window.webkitURL;
-        var picURL = windowURL.createObjectURL(fileInput[0]);
-        console.log(picURL);
-        $('main').append('<p>' + picURL + '</p>')
-
-    }
-}
-
-$("<input/>").attr('type', 'file').on('change', function (e) {
-    getUploadedPicURL(e);
-    console.log('my event2');
-});
 
 
 /////// cropping
 crop = function () {
     //Find the part of the image that is inside the crop box
 
-    var crop_canvas, $container, left, top, imgToDrawSrc, toGet, imgToDraw, widthToDraw, heightToDraw, i,
+    var crop_canvas, left, top, imgToDrawSrc, toGet, imgToDraw, widthToDraw, heightToDraw, i,
         len = images.length,
         width = $('.overlay').width(),
         height = $('.overlay').height();
 
     if (len > 0) {
-        $container = $('#' + images[0].containerId);
         crop_canvas = document.createElement('canvas');
         crop_canvas.width = width;
         crop_canvas.height = height;
 
-        debugger
         for (i = 0; i < len; i += 1) {
             imgToDrawSrc = images[i].image;
             if (images[i].containerLeft !== undefined) {
@@ -378,16 +359,14 @@ crop = function () {
                 top = $('.overlay').offset().top - images[i].containerTop;
             }
             else {
-                left = -width / 2;
-                top = -height / 2;
+                left = -width/2;
+                top = -height/2;
             }
             widthToDraw = images[i].containerWidth;
             heightToDraw = images[i].containerHeight;
-
-            var element = $("img[src='" + imgToDrawSrc + "']");
-            toGet = element.length;
-            imgToDraw = element.get(toGet - 1);
-            //imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
+            toGet = $("img[src='" + imgToDrawSrc + "']").length;
+            imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
+            //crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, widthToDraw, heightToDraw, 0, 0, width, height);
             crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
         }
 
