@@ -330,7 +330,7 @@ var chosenPhoto = 'images/test_photo.jpg';
 
 
 $('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
-$('#load_photo').on('click', imageAddings.addPhoto);
+//('#load_photo').on('click', imageAddings.addPhoto);
 
 
 
