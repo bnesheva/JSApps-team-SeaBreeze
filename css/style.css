@@ -4,11 +4,9 @@
 a {
 	color: rgba(57,181,74,1);
 }
-
 main {
 	overflow: hidden;
 }
-
 #show_profile {
     display: inline-block;
 }
@@ -33,11 +31,12 @@ main .container-fluid {
 #toolbar {
     text-align: center;
     padding: 5px;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.8);
     position: fixed;
     bottom: 0;
     width: 100%;
     border-top: 1px solid #ccc;
+	z-index: 3;
 }
 #toolbar .btn {
     font-size: 10px;
@@ -45,6 +44,14 @@ main .container-fluid {
     height: 44px;
     white-space: normal;
     padding: 0;
+}
+.btn-default {
+	border: none;
+	background: transparent;
+}
+.btn-default:hover, .btn-default:active {
+	color: rgba(57,181,74,1);
+	background: transparent;
 }
 .sticker_thumbnail {
     width: 130px;
@@ -57,13 +64,11 @@ main .container-fluid {
 }
 .sticker_thumbnail.selected, .sticker_thumbnail:hover {
 	border-color: rgba(57,181,74,.9);
+	box-shadow: 0 0 8px rgba(0,0,0,.3);
 }
 .sticker_thumbnail img{
 	width: 100%;
 	height: auto;
-}
-.sticker_thumbnail.selected, .sticker_thumbnail:hover {
-	border-color: rgba(57,181,74,.9);
 }
 .sticker_holder {
     text-align: center;
@@ -97,14 +102,23 @@ main .container-fluid > img {
     }
 	.profile_popup {
 		display: none;
-		z-index: 3;
+		z-index: 5;
 		position: absolute;
 		border-radius: 0 0 3px 3px;
 		width: 250px;
 		right: 0px;
 	}
 	.profile_holder:hover .profile_popup {
-			display: block;
+		display: block;
+	}
+	.btn-default {
+		border: 1px solid #ccc;
+		background-color: #fff;
+	}
+	.btn-default:hover {
+		border-color: #999;
+		background-color: #fff;
+		box-shadow: 0 0 5px rgba(0,0,0,.3);
 	}
 }
 /******=====================================
@@ -140,7 +154,7 @@ Image editor from tutorial*/
     width: 10px;
     height: 10px;
     background: rgba(57,181,74,.9);
-    z-index: 999;
+    z-index: 2;
 }
 
 .resize-handle-nw {
@@ -172,7 +186,7 @@ Image editor from tutorial*/
     top: 50%;
     margin-left: -150px;
     margin-top: -150px;
-    z-index: 999;
+    z-index: 2;
     width: 300px;
     height: 300px;
     border: solid 2px rgba(57,181,74,.9);

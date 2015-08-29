@@ -363,7 +363,7 @@ var imageAddings = {
 var chosenPhoto = 'images/test_photo.jpg';
 
 
-$('.sticker_thumbnail').on('click', imageAddings.addSticker);
+$('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
 $('#load_photo').on('click', imageAddings.addPhoto);
 
 //hide canvas
