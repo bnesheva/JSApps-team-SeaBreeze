@@ -2,6 +2,7 @@
  * Created by Nick on 26/8/2015.
  */
 var ImagesService = require('./services/ImagesService.js');
+var UserServices = require('./services/UserServices.js');
 var LoadPicModule = require('./load_picture.js');
 var DB = require('./DBOperations.js');
 
@@ -10,8 +11,9 @@ var DB = require('./DBOperations.js');
 // For test purpose
 var Main = (function () {
     var Service = {};
-
-    Service.main = function() {
+        
+        console.log(UserServices.createUser('lel','kek'));
+        Service.main = function() {
         var IS = Object.create(ImagesService).init();
 
         LoadPicModule;
@@ -21,7 +23,7 @@ var Main = (function () {
         var $fileInput = $('<input/>')
             .attr('type', "file")
             .appendTo(document.body);
-
+        
         $fileInput.on('change', function() {
             IS.UploadImage(this.files[0]);
         });

@@ -5,9 +5,10 @@ var UserServices = (function () {
     
     userServices = {
         createUser: function(username, password){
+            console.log(DBOperations.GetAllUsers().success());
         }
     }
-
+    
     return userServices;
 })();
 
