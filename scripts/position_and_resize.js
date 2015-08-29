@@ -266,7 +266,7 @@ function splitUrl(url) {
 }
 
 var imageAddings = {
-    addPhoto: function () {
+    addPhoto: function (picUrl) {
         removeImage('photo');
         if ($('.resize-container').hasClass('photo')) {
             $('.resize-container.photo').remove();
@@ -281,17 +281,17 @@ var imageAddings = {
             return photo;
         }(resizeableImage));
 
-        photo.init(chosenPhoto, 'photo');
+        photo.init(picUrl, 'photo');
 
         $('.resize-container').removeClass('selected');
-        var selector = splitUrl(chosenPhoto);
+        var selector = splitUrl(picUrl);
         var $outer = $(selector).parent('.resize-container');
         $outer.addClass('photo selected');
 
 
         photo.name = 'photo';
         photo.containerId = $outer.attr('id');
-        photo.image = chosenPhoto;
+        photo.image = picUrl;
         images.push(photo);
 
     },
@@ -330,11 +330,11 @@ var imageAddings = {
 }
 
 //temp vars to test
-var chosenPhoto = 'images/test_photo.jpg';
+//var chosenPhoto = 'images/test_photo.jpg';
 
 
 $('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
-$('#load_photo').on('click', imageAddings.addPhoto);
+//$('#load_photo').on('click', imageAddings.addPhoto);
 
 
 
