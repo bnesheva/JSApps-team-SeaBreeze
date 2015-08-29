@@ -4,9 +4,11 @@
 a {
 	color: rgba(57,181,74,1);
 }
+
 main {
 	overflow: hidden;
 }
+
 #show_profile {
     display: inline-block;
 }
@@ -59,6 +61,9 @@ main .container-fluid {
 .sticker_thumbnail img{
 	width: 100%;
 	height: auto;
+}
+.sticker_thumbnail.selected, .sticker_thumbnail:hover {
+	border-color: rgba(57,181,74,.9);
 }
 .sticker_holder {
     text-align: center;
