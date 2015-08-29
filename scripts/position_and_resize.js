@@ -326,32 +326,36 @@ var imageAddings = {
 
     },
     addSticker: function () {
-        $('.sticker_thumbnail').removeClass('selected');
-        $(this).addClass('selected');
-        var src = getStickerUrl();
-        var sticker = (function (parent) {
-            var sticker = Object.create(parent, {});
+        if (images.length < 30) {
+            $('.sticker_thumbnail').removeClass('selected');
+            $(this).addClass('selected');
+            var src = getStickerUrl();
+            var sticker = (function (parent) {
+                var sticker = Object.create(parent, {});
 
-            sticker.init = function (chosenPhoto, className) {
-                parent.init.call(this, chosenPhoto, className);
-            };
+                sticker.init = function (chosenPhoto, className) {
+                    parent.init.call(this, chosenPhoto, className);
+                };
 
-            return sticker;
-        }(resizeableImage));
+                return sticker;
+            }(resizeableImage));
 
-        sticker.init(src, 'sticker');
+            sticker.init(src, 'sticker');
 
-        $('.resize-container').removeClass('selected');
+            $('.resize-container').removeClass('selected');
 
 
-        var selector = splitUrl(src);
-        var $outer = $(selector).parent('.resize-container');
-        $outer.addClass('sticker selected');
-        
-        sticker.name = 'sticker';
-        sticker.containerId = $outer.attr('id');
-        sticker.image = src;
-        images.push(sticker);
+            var selector = splitUrl(src);
+            var $outer = $(selector).parent('.resize-container');
+            $outer.addClass('sticker selected');
+
+            sticker.name = 'sticker';
+            sticker.containerId = $outer.attr('id');
+            sticker.image = src;
+            images.push(sticker);
+        } else {
+            alert('You added more than enough stickers already!');
+        }
     }
 }
 
@@ -390,7 +394,7 @@ crop = function () {
     //Find the part of the image that is inside the crop box
 
     var crop_canvas,
-        $container = $('#' + images[0].containerId),
+        $container,
         left,
         top,
         imgToDrawSrc,
@@ -403,30 +407,44 @@ crop = function () {
         width = $('.overlay').width(),
         height = $('.overlay').height();
 
-    crop_canvas = document.createElement('canvas');
-    crop_canvas.width = width;
-    crop_canvas.height = height;
+    if (len > 0) {
+        $container = $('#' + images[0].containerId);
+        crop_canvas = document.createElement('canvas');
+        crop_canvas.width = width;
+        crop_canvas.height = height;
 
-    for (i = 0; i < len; i += 1) {
-        imgToDrawSrc = images[i].image;
-       // console.log(images[i]);
-        left = $('.overlay').offset().left - images[i].containerLeft;
-        top = $('.overlay').offset().top - images[i].containerTop;
-        widthToDraw = images[i].containerWidth;
-        heightToDraw = images[i].containerHeight;
-        toGet = $("img[src='" + imgToDrawSrc + "']").length;
-        imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
+        for (i = 0; i < len; i += 1) {
+            imgToDrawSrc = images[i].image;
+            // console.log(images[i]);
+            if (images[i].containerLeft !== undefined) {
+                left = $('.overlay').offset().left - images[i].containerLeft;
+                top = $('.overlay').offset().top - images[i].containerTop;
+            }
+            else {
+                left = -width/2;
+                top = -height/2;
+            }
+            widthToDraw = images[i].containerWidth;
+            heightToDraw = images[i].containerHeight;
+            toGet = $("img[src='" + imgToDrawSrc + "']").length;
+            imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
 
-      //  console.log(imgToDraw);
-      //  console.log(left, top, width, height);
-        crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
+            //  console.log(imgToDraw);
+            //  console.log(left, top, width, height);
+            crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
+        }
+
+        window.open(crop_canvas.toDataURL("image/png"));
     }
-
-    window.open(crop_canvas.toDataURL("image/png"));
+    else {
+        alert('load image to procceed');
+    }
 }
 
 
 
 
-$('.js-crop').on('click', crop);
-
+$('#crop_image').on('click', crop);
+$('#reset').on('click', function () {
+    window.location.reload()
+});

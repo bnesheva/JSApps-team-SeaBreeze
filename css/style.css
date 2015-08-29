@@ -1,40 +1,33 @@
-﻿#show_profile {
+﻿body {
+	padding-bottom: 40px;
+}
+a {
+	color: rgba(57,181,74,1);
+}
+main {
+	overflow: hidden;
+}
+#show_profile {
     display: inline-block;
 }
 .profile_popup {
-    display: none;
-	z-index: 3;
-	position: absolute;
     background: #333;
     color: #fff;
     padding: 10px;
-    border-radius: 0 0 3px 3px;
-    width: 250px;
-    right: 0px;
+   /* width: 250px;*/
 }
-.profile_holder:hover .profile_popup {
-        display: block;
-}
+
 .navbar-nav>li .profile_holder a {
     padding-top: 15px;
     padding-bottom: 15px;
 }
 main .container-fluid {
     background-color: #ccc;
-    height: 500px;
+    height: 430px;
     text-align: center;
 	position: relative;
-    width: 100vw;
-    left: -50vw;
-    margin-left: 150px;
-    margin-top: -100px;
 }
-#cropper {
-    width: 300px;
-    height: 300px;
-    margin: 100px auto;
-    border: 1px solid #0ff;
-}
+
 #toolbar {
     text-align: center;
     padding: 5px;
@@ -48,17 +41,24 @@ main .container-fluid {
     font-size: 10px;
     width: 44px;
     height: 44px;
-    margin: 5px;
     white-space: normal;
     padding: 0;
 }
 .sticker_thumbnail {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border: 1px solid #eee;
     margin: 5px;
     display: inline-block;
     text-align: center;
+	overflow: hidden;
+}
+.sticker_thumbnail.selected, .sticker_thumbnail:hover {
+	border-color: rgba(57,181,74,.9);
+}
+.sticker_thumbnail img{
+	width: 100%;
+	height: auto;
 }
 .sticker_holder {
     text-align: center;
@@ -71,6 +71,7 @@ footer {
 main .container-fluid > img {
 	display: none;
 }
+
 @media screen and (min-width: 768px) {
     #toolbar {
         position: absolute;
@@ -81,11 +82,25 @@ main .container-fluid > img {
         border: 1px solid #ccc;
         border-radius: 3px;
     }
+	#toolbar .btn {
+		margin: 5px;
+	}
     footer {
         position: fixed;
         bottom: 0;
         width: 100%;
     }
+	.profile_popup {
+		display: none;
+		z-index: 3;
+		position: absolute;
+		border-radius: 0 0 3px 3px;
+		width: 250px;
+		right: 0px;
+	}
+	.profile_holder:hover .profile_popup {
+			display: block;
+	}
 }
 /******=====================================
 Image editor from tutorial*/
@@ -95,17 +110,19 @@ Image editor from tutorial*/
     display: inline-block;
     cursor: move;
     margin: 0 auto;
+	left: 50%;
+    top: 50%;
 }
 
 .resize-container img {
     display: block;
 }
 .selected.resize-container img {
-    outline: 1px dashed rgba(222,60,80,.5);
+    outline: 1px dashed rgba(57,181,74,.5);
 }
 .selected.resize-container:hover img,
 .selected.resize-container:active img {
-    outline: 2px dashed rgba(222,60,80,.9);
+    outline: 2px dashed rgba(57,181,74,.9);
 }
 
 .selected .resize-handle-ne,
@@ -117,7 +134,7 @@ Image editor from tutorial*/
     display: block;
     width: 10px;
     height: 10px;
-    background: rgba(222,60,80,.9);
+    background: rgba(57,181,74,.9);
     z-index: 999;
 }
 
@@ -153,7 +170,7 @@ Image editor from tutorial*/
     z-index: 999;
     width: 300px;
     height: 300px;
-    border: solid 2px rgba(222,60,80,.9);
+    border: solid 2px rgba(57,181,74,.9);
     box-sizing: content-box;
     pointer-events: none;
 }
@@ -165,8 +182,8 @@ Image editor from tutorial*/
     display: block;
     width: 304px;
     height: 40px;
-    border-left: dashed 2px rgba(222,60,80,.9);
-    border-right: dashed 2px rgba(222,60,80,.9);
+    border-left: dashed 2px rgba(57,181,74,.9);
+    border-right: dashed 2px rgba(57,181,74,.9);
 }
 
 .overlay:before {
@@ -188,8 +205,8 @@ Image editor from tutorial*/
     display: block;
     width: 40px;
     height: 304px;
-    border-top: dashed 2px rgba(222,60,80,.9);
-    border-bottom: dashed 2px rgba(222,60,80,.9);
+    border-top: dashed 2px rgba(57,181,74,.9);
+    border-bottom: dashed 2px rgba(57,181,74,.9);
 }
 
 .overlay-inner:before {
@@ -202,19 +219,6 @@ Image editor from tutorial*/
     right: 0;
     margin-right: -40px;
     margin-top: -2px;
-}
-
-.btn-crop {
-    position: absolute;
-    vertical-align: bottom;
-    right: 5px;
-    bottom: 5px;
-    padding: 6px 10px;
-    z-index: 999;
-    background-color: rgb(222,60,80);
-    border: none;
-    border-radius: 5px;
-    color: #FFF;
 }
 
 #fileInput{
