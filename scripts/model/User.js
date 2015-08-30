@@ -5,7 +5,7 @@ var User = (function () {
 		value: function (id, username, password, userImages) {
 			this.username = username;
 			this.password = password;
-			this._id = id;
+			this._id = id;		
 			this._userImages = userImages || [];
 			return this;
 		}
@@ -20,7 +20,7 @@ var User = (function () {
 	Object.defineProperty(user, 'username', {
 		get: function () {
 			return this._username;
-		}, 
+		},
 		set: function (value) {
 			this._username = value;
 		}

@@ -12,7 +12,7 @@ var DB = require('./DBOperations.js');
 var Main = (function () {
     var Service = {};
         
-        UserServices.createUser('nick','kek');
+        UserServices.createUser('lel','kek');
         Service.main = function() {
         var IS = Object.create(ImagesService).init();
 
