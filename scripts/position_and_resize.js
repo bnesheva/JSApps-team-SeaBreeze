@@ -173,7 +173,12 @@ var resizeableImage = (function () {
 
         var containerId = ($container.attr('id'));
         var currentContainerObj = getCurrentContainer(containerId);
-        currentContainerObj.image = resize_canvas.toDataURL("image/png");
+
+        //currentContainerObj.image = resize_canvas.toDataURL("image/png");
+
+        var imgAsDataURL = resize_canvas.toDataURL("image/png");
+        localStorage.setItem('img_' + containerId, imgAsDataURL);
+        console.log(localStorage.getItem('img_' + containerId));
     };
 
     resizeableImage.startMoving = function (e) {
@@ -240,34 +245,10 @@ var resizeableImage = (function () {
 
 }());
 
-//to ge the url from the loader but not working...
-function getSelectedImageURL(url) {
-    return chosenPhotoURL = url;
-}
-
-function removeImage(name) {
-    var removed = $.grep(images, function (e) {
-        return e.name != name;
-    });
-    images = removed;
-}
-function getStickerUrl() {
-    if ($('.sticker_thumbnail.selected').length > 0) {
-        var img = $('.sticker_thumbnail.selected').find('img').get(0);
-        var src = $(img).attr('src');
-        return src;
-    }
-}
-
-function splitUrl(url) {
-    var splittedUrl = url.split('/');
-    var filename = splittedUrl[splittedUrl.length - 1];
-    return 'img[src$="' + filename + '"]'
-}
 
 var imageAddings = {
     addPhoto: function (picUrl) {
-        removeImage('photo');
+        imageAddings.removeImage('photo');
         if ($('.resize-container').hasClass('photo')) {
             $('.resize-container.photo').remove();
         }
@@ -284,7 +265,7 @@ var imageAddings = {
         photo.init(picUrl, 'photo');
 
         $('.resize-container').removeClass('selected');
-        var selector = splitUrl(picUrl);
+        var selector = imageAddings.splitUrl(picUrl);
         var $outer = $(selector).parent('.resize-container');
         $outer.addClass('photo selected');
 
@@ -299,7 +280,7 @@ var imageAddings = {
         if (images.length < 30) {
             $('.sticker_thumbnail').removeClass('selected');
             $(this).addClass('selected');
-            var src = getStickerUrl();
+            var src = imageAddings.getStickerUrl();
             var sticker = (function (parent) {
                 var sticker = Object.create(parent, {});
 
@@ -315,17 +296,37 @@ var imageAddings = {
             $('.resize-container').removeClass('selected');
 
 
-            var selector = splitUrl(src);
+            var selector = imageAddings.splitUrl(src);
             var $outer = $(selector).parent('.resize-container');
             $outer.addClass('sticker selected');
 
             sticker.name = 'sticker';
             sticker.containerId = $outer.attr('id');
             sticker.image = src;
+
+
             images.push(sticker);
         } else {
             alert('You added more than enough stickers already!');
         }
+    },
+    removeImage: function(name) {
+        var removed = $.grep(images, function (e) {
+            return e.name != name;
+        });
+        images = removed;
+    },
+    getStickerUrl: function() {
+        if ($('.sticker_thumbnail.selected').length > 0) {
+            var img = $('.sticker_thumbnail.selected').find('img').get(0);
+            var src = $(img).attr('src');
+            return src;
+        }
+    },
+    splitUrl: function(url) {
+        var splittedUrl = url.split('/');
+        var filename = splittedUrl[splittedUrl.length - 1];
+        return 'img[src$="' + filename + '"]'
     }
 }
 
@@ -353,7 +354,8 @@ crop = function () {
         crop_canvas.height = height;
 
         for (i = 0; i < len; i += 1) {
-            imgToDrawSrc = images[i].image;
+            //imgToDrawSrc = images[i].image;
+            imgToDrawSrc = localStorage.getItem("img_" + images[i].containerId);
             if (images[i].containerLeft !== undefined) {
                 left = $('.overlay').offset().left - images[i].containerLeft;
                 top = $('.overlay').offset().top - images[i].containerTop;
