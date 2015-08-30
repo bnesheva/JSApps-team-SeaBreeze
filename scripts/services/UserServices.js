@@ -7,13 +7,11 @@ var UserServices = (function () {
 
     userServices = {
         createUser: function (username, password) {
-            var userIsTaken = false;
-
             DBOperations.GetAllUsers()
                 .success()
                 .then(function (data) {
                     var users = data.Result;
-                    userIsTaken = _.some(users, function (item) {
+                    var userIsTaken = _.some(users, function (item) {
                         return item.Username === username;
                     });
 
@@ -44,7 +42,7 @@ var UserServices = (function () {
         },
         
         logout: function () {
-            localStorage.setItem('currentUser', 'null');
+            localStorage.removeItem('currentUser');
         }
     }
 
