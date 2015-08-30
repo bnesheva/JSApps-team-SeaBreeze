@@ -31,12 +31,16 @@ var UserServices = (function () {
                     var user = _.find(users, function (item) {
                         return item.Username === username && item.password === password;
                     });
- 
-                    if (user) {              
-                        var currentUser = User.init(user.id, user.username, user.password, user.picsArray);         
-                        localStorage.setItem('currentUser', JSON.stringify(currentUser));      
+
+                    if (user) {
+                        var currentUser = User.init(user.id, user.username, user.password, user.picsArray);
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     }
                 });
+        },
+        
+        logout: function () {
+            localStorage.setItem('currentUser', 'null');
         }
     }
 
