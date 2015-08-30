@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <meta property="og:type" content="article" />
+	<meta property="og:title" content="Become a skilled developer overnight" />
+	<meta property="og:description" content="I just gained some web development skills - wanna boost yours as well? If you want all this to become true, and to gain even more skills in real life, better start learning hard in Telerik Academy" />
+	<meta property="og:image" content="images/wireframe_v1.jpg" />
+	<meta property="fb:app_id" content="398097427052792" />
     <title>Become a Dev Master Overnight</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -12,6 +17,30 @@
 
 </head>
 <body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '398097427052792',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+	FB.ui(
+	 {
+	  method: 'share',
+	  href: 'https://developers.facebook.com/docs/'
+	}, function(response){});
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   
+   
+</script>
 <header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -104,6 +133,10 @@
     </a>
 </aside>
 <section id="sticker_palette"></section>
+<div class="fb-share-button" 
+        data-href="https://cdn.rawgit.com/bnesheva/JSApps-team-SeaBreeze/b3246610c68154e2813d06d038a0dbeee2e1e809/index.html" 
+        data-layout="button_count">
+    </div>
 
 <footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course</footer>
 
@@ -119,8 +152,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-<script src="scripts/stickerThumbnails.js"></script>
 <script src="scripts/take_photo.js"></script>
-<script src="scripts/position_and_resize.js"></script>
+<script src="scripts/general.js"></script>
 </body>
 </html>

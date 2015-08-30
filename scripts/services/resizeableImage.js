@@ -1,7 +1,5 @@
-// Resize and position image
-//console.log('loaded')
-var images = [];
-var imageIdCounter = 0;
+// JavaScript source code
+
 var resizeableImage = (function () {
     var $container,
         orig_src = new Image(),
@@ -36,6 +34,8 @@ var resizeableImage = (function () {
             throw new Error('no images!');
         }
     }
+
+    
 
     var resizeableImage = Object.create({});
     resizeableImage.init = function (src, className) {
@@ -230,148 +230,11 @@ var resizeableImage = (function () {
         }
     };
 
+
+
     //final return
     return resizeableImage;
 
 }());
 
-var imageAddings = {
-    addPhoto: function (picUrl) {
-        imageAddings.removeImage('photo');
-        if ($('.resize-container').hasClass('photo')) {
-            $('.resize-container.photo').remove();
-        }
-        var photo = (function (parent) {
-            var photo = Object.create(parent, {});
-
-            photo.init = function (chosenPhoto, className) {
-                parent.init.call(this, chosenPhoto, className);
-            };
-
-            return photo;
-        }(resizeableImage));
-
-        photo.init(picUrl, 'photo');
-
-        $('.resize-container').removeClass('selected');
-        var selector = imageAddings.splitUrl(picUrl);
-        var $outer = $(selector).parent('.resize-container');
-        $outer.addClass('photo selected');
-
-
-        photo.name = 'photo';
-        photo.containerId = $outer.attr('id');
-        photo.image = picUrl;
-        images.push(photo);
-
-    },
-    addSticker: function () {
-        if (images.length < 30) {
-            $('.sticker_thumbnail').removeClass('selected');
-            $(this).addClass('selected');
-            var src = imageAddings.getStickerUrl();
-            var sticker = (function (parent) {
-                var sticker = Object.create(parent, {});
-
-                sticker.init = function (chosenPhoto, className) {
-                    parent.init.call(this, chosenPhoto, className);
-                };
-
-                return sticker;
-            }(resizeableImage));
-
-            sticker.init(src, 'sticker');
-
-            $('.resize-container').removeClass('selected');
-
-
-            var selector = imageAddings.splitUrl(src);
-            var $outer = $(selector).parent('.resize-container');
-            $outer.addClass('sticker selected');
-
-            sticker.name = 'sticker';
-            sticker.containerId = $outer.attr('id');
-            sticker.image = src;
-            images.push(sticker);
-        } else {
-            alert('You added more than enough stickers already! Some people may decide you overrate your dev abilities ..');
-        }
-    },
-    ///helpers
-    removeImage: function(name) {
-        var removed = $.grep(images, function (e) {
-            return e.name != name;
-        });
-        images = removed;
-    },
-    getStickerUrl: function() {
-        if ($('.sticker_thumbnail.selected').length > 0) {
-            var img = $('.sticker_thumbnail.selected').find('img').get(0);
-            var src = $(img).attr('src');
-            return src;
-        }
-    },
-
-    splitUrl: function (url) {
-        var splittedUrl = url.split('/');
-        var filename = splittedUrl[splittedUrl.length - 1];
-        return 'img[src$="' + filename + '"]'
-    }
-};
-
-//temp vars to test
-//var chosenPhoto = 'images/test_photo.jpg';
-
-
-$('.sticker_thumbnail').on('click', imageAddings.addSticker);
-//$('#load_photo').on('click', imageAddings.addPhoto);
-
-
-
-/////// cropping
-crop = function () {
-    //Find the part of the image that is inside the crop box
-
-    var crop_canvas, left, top, imgToDrawSrc, toGet, imgToDraw, widthToDraw, heightToDraw, i,
-        len = images.length,
-        width = $('.overlay').width(),
-        height = $('.overlay').height();
-
-    if (len > 0) {
-        crop_canvas = document.createElement('canvas');
-        crop_canvas.width = width;
-        crop_canvas.height = height;
-
-        for (i = 0; i < len; i += 1) {
-            imgToDrawSrc = images[i].image;
-            if (images[i].containerLeft !== undefined) {
-                left = $('.overlay').offset().left - images[i].containerLeft;
-                top = $('.overlay').offset().top - images[i].containerTop;
-            }
-            else {
-                left = -width/2;
-                top = -height/2;
-            }
-            widthToDraw = images[i].containerWidth;
-            heightToDraw = images[i].containerHeight;
-            toGet = $("img[src='" + imgToDrawSrc + "']").length;
-            imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
-            crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
-        }
-
-        window.open(crop_canvas.toDataURL("image/png"));
-    }
-    else {
-        alert('load image to procceed');
-    }
-};
-
-$('#crop_image').on('click', crop);
-$('#reset').on('click', function () {
-    window.location.reload()
-});
-
-////// fake functionality for the login
-$(document).on('click', $('.login'), function () {
-    $('#welcome_screen').hide();
-});
+module.exports = resizeableImage;
