@@ -41,12 +41,7 @@ var resizeableImage = (function () {
     resizeableImage.init = function (src, className) {
         var id = imageIdCounter +=1;
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
-        if (className === 'photo') {
-            $('main .container-fluid').prepend(imageLoaded);
-        }
-        else {
-            $('main .container-fluid').append(imageLoaded);
-        };
+        $('main .container-fluid').append(imageLoaded);
         
 
         resizeableImage.image_target = getTargetImg(className);
@@ -173,12 +168,7 @@ var resizeableImage = (function () {
 
         var containerId = ($container.attr('id'));
         var currentContainerObj = getCurrentContainer(containerId);
-
-        //currentContainerObj.image = resize_canvas.toDataURL("image/png");
-
-        var imgAsDataURL = resize_canvas.toDataURL("image/png");
-        localStorage.setItem('img_' + containerId, imgAsDataURL);
-        console.log(localStorage.getItem('img_' + containerId));
+        currentContainerObj.image = resize_canvas.toDataURL("image/png");
     };
 
     resizeableImage.startMoving = function (e) {
@@ -245,7 +235,6 @@ var resizeableImage = (function () {
 
 }());
 
-
 var imageAddings = {
     addPhoto: function (picUrl) {
         imageAddings.removeImage('photo');
@@ -303,13 +292,12 @@ var imageAddings = {
             sticker.name = 'sticker';
             sticker.containerId = $outer.attr('id');
             sticker.image = src;
-
-
             images.push(sticker);
         } else {
-            alert('You added more than enough stickers already!');
+            alert('You added more than enough stickers already! Some people may decide you overrate your dev abilities ..');
         }
     },
+    ///helpers
     removeImage: function(name) {
         var removed = $.grep(images, function (e) {
             return e.name != name;
@@ -323,7 +311,8 @@ var imageAddings = {
             return src;
         }
     },
-    splitUrl: function(url) {
+
+    splitUrl: function (url) {
         var splittedUrl = url.split('/');
         var filename = splittedUrl[splittedUrl.length - 1];
         return 'img[src$="' + filename + '"]'
@@ -334,7 +323,7 @@ var imageAddings = {
 //var chosenPhoto = 'images/test_photo.jpg';
 
 
-$('.sticker_thumbnail').on('mousedown touchstart', imageAddings.addSticker);
+$('.sticker_thumbnail').on('click', imageAddings.addSticker);
 //$('#load_photo').on('click', imageAddings.addPhoto);
 
 
@@ -354,8 +343,7 @@ crop = function () {
         crop_canvas.height = height;
 
         for (i = 0; i < len; i += 1) {
-            //imgToDrawSrc = images[i].image;
-            imgToDrawSrc = localStorage.getItem("img_" + images[i].containerId);
+            imgToDrawSrc = images[i].image;
             if (images[i].containerLeft !== undefined) {
                 left = $('.overlay').offset().left - images[i].containerLeft;
                 top = $('.overlay').offset().top - images[i].containerTop;
@@ -368,7 +356,6 @@ crop = function () {
             heightToDraw = images[i].containerHeight;
             toGet = $("img[src='" + imgToDrawSrc + "']").length;
             imgToDraw = $("img[src='" + imgToDrawSrc + "']").get(toGet - 1);
-            //crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, widthToDraw, heightToDraw, 0, 0, width, height);
             crop_canvas.getContext('2d').drawImage(imgToDraw, left, top, width, height, 0, 0, width, height);
         }
 

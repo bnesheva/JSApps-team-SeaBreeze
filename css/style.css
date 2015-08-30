@@ -16,7 +16,13 @@ main {
     padding: 10px;
    /* width: 250px;*/
 }
-
+header{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
 .navbar-nav>li .profile_holder a {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -31,7 +37,7 @@ main .container-fluid {
 #toolbar {
     text-align: center;
     padding: 5px;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -54,8 +60,8 @@ main .container-fluid {
 	background: transparent;
 }
 .sticker_thumbnail {
-    width: 84px;
-    height: 84px;
+    width: 76px;
+    height: 76px;
     border: 1px solid #eee;
     margin: 5px;
     display: inline-block;
@@ -70,9 +76,7 @@ main .container-fluid {
 	width: 100%;
 	height: auto;
 }
-.sticker_holder {
-    text-align: center;
-}
+
 footer {
         background: #333;
         color: #ccc;
@@ -102,7 +106,6 @@ main .container-fluid > img {
     }
 	.profile_popup {
 		display: none;
-		z-index: 5;
 		position: absolute;
 		border-radius: 0 0 3px 3px;
 		width: 250px;
@@ -128,6 +131,9 @@ main .container-fluid > img {
 		display: inline-block;
 		text-align: center;
 		overflow: hidden;
+	}
+	.sticker_holder {
+		text-align: center;
 	}
 }
 @media screen and (min-width: 768px) {
@@ -256,7 +262,7 @@ Image editor from tutorial*/
 }
 /*--------------------- welcone screen*/
 #welcome_screen {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -265,23 +271,37 @@ Image editor from tutorial*/
     text-align: center;
     background-color: rgba(0,0,0,0.7);
 	color: #fff;
+	overflow-y: scroll;
 }
 .welcome_holder {
     width: 300px;
-    background: url(../images/login_screen.jpg) no-repeat center top #76b819;
-	background-size: 100%;
-    padding: 30px 10px;
-    margin: 30px auto;
     border-radius: 3px;
+	margin: 30px auto;
+}
+.action {
+	background: url(../images/login_screen.jpg) no-repeat center top #76b819;
+	background-size: 100%;
+    padding: 20px 10px;
+	border-radius: 3px;
+}
+.banner {
+	display: none;
 }
 .welcome_holder h1 {
 	font-size: 26px;
 	margin-top: 0px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+}
+.welcome_holder h2 {
+	margin-bottom: 0px;
+}
+.welcome_holder .row {
+	margin-right: 0;
+    margin-left: 0;
 }
 .step {
 	text-align: left;
-	padding: 3px 20px;
+	padding: 0 20px;
 	color: #333;
 }
 .step span {
@@ -310,6 +330,7 @@ input {
 .welcome_holder form input {
 	width: 100%;
 	font-size: 18px;
+	margin:  3px 0
 
 }
 .login {
@@ -321,6 +342,25 @@ input {
 .login:hover, .login:active {
 	background-color: rgba(255,255,255,.7);
 	color: rgba(57,181,74,1);
+}
+@media screen and (min-width: 768px) {
+	.welcome_holder {
+		width: 600px;
+		border-radius: 3px;
+		margin: 30px auto;
+		background: url(../images/banner.jpg) no-repeat left top #ccc;;
+		background-size: auto 100%
+	}
+	.welcome_holder .row {
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+	.action {
+		border-radius: 0px 3px 3px 0px;
+	}
+	.banner {
+		display: block;
+	}
 }
 /*--------------------- end welcone screen*/
 #fileInput{
