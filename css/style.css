@@ -6,6 +6,7 @@ a {
 }
 main {
 	overflow: hidden;
+	margin-top: 50px
 }
 #show_profile {
     display: inline-block;
@@ -29,7 +30,7 @@ header{
 }
 main .container-fluid {
     background: url(../images/transparency.png) repeat #ccc;
-    height: 430px;
+    height: 360px;
     text-align: center;
 	position: relative;
 }
@@ -58,6 +59,9 @@ main .container-fluid {
 .btn-default:hover, .btn-default:active {
 	color: rgba(57,181,74,1);
 	background: transparent;
+}
+#sticker_palette h3 {
+	font-size: 18px;
 }
 .sticker_thumbnail {
     width: 76px;
@@ -104,6 +108,9 @@ main .container-fluid > img {
         bottom: 0;
         width: 100%;
     }
+	main .container-fluid {
+		height: 430px;
+	}
 	.profile_popup {
 		display: none;
 		position: absolute;
@@ -134,6 +141,9 @@ main .container-fluid > img {
 	}
 	.sticker_holder {
 		text-align: center;
+	}
+	#sticker_palette h3 {
+		font-size: 24px;
 	}
 }
 @media screen and (min-width: 768px) {
