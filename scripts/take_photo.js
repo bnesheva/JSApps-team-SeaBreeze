@@ -5,13 +5,14 @@ takePictureButton.addEventListener('click', function () {
     video.style.display = 'inline-block';
 
     var showButton = document.getElementById('shotButtonWrapper');
-    showButton.style.display = 'block';
+    showButton.style.display = 'inline-block';
+
     var takeShotButton = document.getElementById('takeShot');
 
     var canvas = document.getElementById('test');
-    canvas.width = '350';
+    canvas.width = '450';
     canvas.height = '430';
-    var ctx = canvas.getContext('2d');
+    canvas.style.display = 'none';
 
     var localMediaStream = null;
     var vgaConstraints = {
@@ -38,10 +39,13 @@ takePictureButton.addEventListener('click', function () {
     function snapshot() {
         if (localMediaStream) {
 
-            ctx.drawImage(video, -50, -150);
-            document.querySelector('img').src = canvas.toDataURL('image/webp');
-            video.style.display='none';
-            showButton.style.display='none';
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(video, -100, -50);
+
+            var picSrc = canvas.toDataURL('image/webp');
+            imageAddings.addPhoto(picSrc);
+            video.style.display = 'none';
+            showButton.style.display = 'none';
         }
     }
 
@@ -49,5 +53,4 @@ takePictureButton.addEventListener('click', function () {
         video.src = window.URL.createObjectURL(stream);
         localMediaStream = stream;
     }, errorCallback);
-
 });
