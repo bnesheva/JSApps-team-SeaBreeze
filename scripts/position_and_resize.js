@@ -158,7 +158,7 @@ var resizeableImage = (function () {
             // Without this Firefox will not re-calculate the the image dimensions until drag end
             $container.offset({ 'left': left, 'top': top });
         }
-    }
+    };
 
     resizeableImage.resizeImage = function (width, height) {;
         resize_canvas.width = width;
@@ -317,7 +317,7 @@ var imageAddings = {
         var filename = splittedUrl[splittedUrl.length - 1];
         return 'img[src$="' + filename + '"]'
     }
-}
+};
 
 //temp vars to test
 //var chosenPhoto = 'images/test_photo.jpg';
@@ -364,7 +364,7 @@ crop = function () {
     else {
         alert('load image to procceed');
     }
-}
+};
 
 $('#crop_image').on('click', crop);
 $('#reset').on('click', function () {
