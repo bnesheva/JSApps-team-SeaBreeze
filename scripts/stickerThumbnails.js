@@ -8,7 +8,7 @@ function drawHTML() {
 
             '<div class="sticker_holder">' +
                 '{{#each stickers}}' +
-                    '<div class="sticker_thumbnail"><img src="images/stikers/' + '{{this.name}}' + '.png"/></div>' +
+                    '<div class="sticker_thumbnail"><img src="images/stikers/' + '{{this.name}}' + '.png"/ alt="' + '{{this.name}}' + '"></div>' +
                 '{{/each}}' +
             '</div>' +
             '<div id="test_draw"></div>' +
