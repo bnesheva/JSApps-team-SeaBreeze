@@ -47,6 +47,16 @@
 
 </script>
 <header>
+    Username:
+    <input id="login" type="text" name="username">
+    Password:
+    <input id="password" type="text" name="password">
+    <!--<input id="loginButton"  type="submit" value="Log in">-->
+    <input id="testButton"  type="submit" value="TEST">
+    <input id="logoutButton"  type="submit" value="Log out">
+
+
+
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -121,30 +131,30 @@
 
                             <p>Not a member yet? <span id="switch_to_register">So sign up!</span></p>
 
-                            <form id="login_form">
+                            <div id="login_form">
                                 Username:<br>
-                                <input type="text" name="username">
+                                <input id="logInUsernameInput" type="text" name="username">
                                 <br>
                                 Password:<br>
-                                <input type="password" name="password">
+                                <input id="logInPasswordInput" type="password" name="password">
                                 <br>
-                                <input class="login" type="submit" value="Login">
-                            </form>
+                                <button id="logInButt">Login</button>
+                            </div>
                         </div>
                         <div class="col-xs-6 register_box">
                             <h2>Create NEW account</h2>
 
                             <p>Already a member? <span id="switch_to_login">So log in!</span></p>
 
-                            <form id="register_form">
+                            <div id="register_form">
                                 Username:<br>
-                                <input type="text" name="username">
+                                <input id="registerUsernameInput" type="text" name="username">
                                 <br>
                                 Password:<br>
-                                <input type="password" name="password">
+                                <input id="registerPasswordInput" type="password" name="password">
                                 <br>
-                                <input class="login" type="submit" value="Login">
-                            </form>
+                                <button id="registerButt">Register</button>
+                            </div>
                         </div>
                     </div>
                 </div>

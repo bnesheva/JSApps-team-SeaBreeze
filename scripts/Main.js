@@ -23,11 +23,29 @@ var Main = (function () {
             LoadPicModule;
             TakePictureModeule;
 
-            UserServices.createUser('HAHAHO','kek');
+            $('#logoutButton').on('click', function() {
+                UserServices.logOutUser();
+            });
 
+            $('#testButton').on('click', function() {
+                DB.GetAllImages(localStorage.getItem('currUserToken'))
+                    .then(function (data) {
+                        var imgs = data.Result;
+                        console.log(imgs)
+                    })
+            });
 
+            $('#logInButt').on('click', function() {
+                var username = $('#logInUsernameInput').val();
+                var password = $('#logInPasswordInput').val();
+                UserServices.loginUser(username, password);
+            });
 
-
+            $('#registerButt').click(function() {
+                var username = $('#registerUsernameInput').val();
+                var password = $('#registerPasswordInput').val();
+                UserServices.createUser(username, password);
+            })
 
             var $fileInput = $('<input/>')
                 .attr('type', "file")

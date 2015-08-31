@@ -16,11 +16,12 @@ var ImagesService = (function () {
     ImagesService.UploadImage = function(inputFile, userId) {
         var img,
             imgData,
+            token,
             FR= new FileReader();
 
         FR.onload = function() {
             imgData = FR.result.split(',')[1];
-
+            token = localStorage.getItem('currUserToken')
             img = {
                 "Filename": inputFile.name,
                 "ContentType": inputFile.type,
@@ -28,7 +29,13 @@ var ImagesService = (function () {
                 "UserId": userId
             };
 
-            DB.AddImage(img);
+            DB.AddImage(img, token)
+                .success(function (data) {
+                    console.log('Successfully added img: ', data)
+                })
+                .fail(function(data) {
+                    console.log('Failed adding img ', data);
+                })
         };
 
         FR.readAsDataURL(inputFile);
