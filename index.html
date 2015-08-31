@@ -104,17 +104,36 @@
 				<p class="step"><span>1</span> Upload your photo</p>
 				<p class="step"><span>2</span> Add stickers for your specialties</p>
 				<p class="step"><span>3</span> Share your proggress</p>
-				<h2>Boost your skills NOW</h2>
-				<form>
-					Username:<br>
-					<input type="text" name="username">
-					<br>
-					Password:<br>
-					<input type="password" name="password">
-					<br>
-					<br>
-					<input class="login" type="submit" value="Login">
-				</form>
+				<div id="sliding_container">
+					<div class="row slideable">
+						<div class="col-xs-6 login_box">
+							<h2>Boost your skills NOW</h2>
+							<p>Not a member yet? <span id="switch_to_register">So sign up!</span></p>
+							<form id="login_form">
+								Username:<br>
+								<input type="text" name="username">
+								<br>
+								Password:<br>
+								<input type="password" name="password">
+								<br>
+								<input class="login" type="submit" value="Login">
+							</form>
+						</div>
+						<div class="col-xs-6 register_box">
+							<h2>Create NEW account</h2>
+							<p>Already a member? <span id="switch_to_login">So log in!</span></p>
+							<form id="register_form">
+								Username:<br>
+								<input type="text" name="username">
+								<br>
+								Password:<br>
+								<input type="password" name="password">
+								<br>
+								<input class="login" type="submit" value="Login">
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

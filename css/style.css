@@ -270,7 +270,7 @@ Image editor from tutorial*/
     margin-right: -40px;
     margin-top: -2px;
 }
-/*--------------------- welcone screen*/
+/*--------------------- welcome screen*/
 #welcome_screen {
     position: fixed;
     left: 0;
@@ -298,12 +298,13 @@ Image editor from tutorial*/
 	display: none;
 }
 .welcome_holder h1 {
-	font-size: 26px;
+	font-size: 24px;
 	margin-top: 0px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 .welcome_holder h2 {
-	margin-bottom: 0px;
+	margin: 0px;
+	min-height: 68px;
 }
 .welcome_holder .row {
 	margin-right: 0;
@@ -343,15 +344,39 @@ input {
 	margin:  3px 0
 
 }
-.login {
+.welcome_holder .login {
 	background: transparent;
 	border: 2px solid #fff;
 	color: #fff;
 	padding: 5px;
+	margin: 18px 0 0 0;
 }
 .login:hover, .login:active {
 	background-color: rgba(255,255,255,.7);
 	color: rgba(57,181,74,1);
+}
+#sliding_container {
+	overflow: hidden;
+}
+.slideable {
+	width: 600px;
+	-webkit-transition: margin 0.5s;
+    transition: margin 0.5s;
+}
+.slideable > div {
+	padding-left: 22px;
+}
+#sliding_container .slideable.slided{
+	margin-left: -315px;
+}
+#sliding_container p {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: #333;
+}
+#switch_to_register, #switch_to_login {
+	text-decoration: underline;
+	color: #fff;
 }
 @media screen and (min-width: 768px) {
 	.welcome_holder {
