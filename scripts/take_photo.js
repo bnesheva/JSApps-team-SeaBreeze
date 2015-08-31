@@ -1,8 +1,7 @@
-// var ImagesService = require('./services/ImagesService.js');
- var imageAddings = require('./services/imageAddings.js');
+var imageAddings = require('./services/imageAddings.js');
 
-var takePicture = (function(){
-    //IS = Object.create(ImagesService).init();
+var takePicture = (function () {
+
     var takePictureButton = document.getElementById('take_snapshot');
 
     takePictureButton.addEventListener('click', function () {
@@ -35,7 +34,7 @@ var takePicture = (function(){
 
         takeShotButton.addEventListener('click', snapshot, false);
 
-// working cross-browser
+        // working cross-browser
         navigator.getUserMedia = navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
