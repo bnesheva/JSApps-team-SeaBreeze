@@ -3,12 +3,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <meta property="og:type" content="article" />
-	<meta property="og:title" content="Become a skilled developer overnight" />
-	<meta property="og:description" content="I just gained some web development skills - wanna boost yours as well? If you want all this to become true, and to gain even more skills in real life, better start learning hard in Telerik Academy" />
-	<meta property="og:image" content="images/wireframe_v1.jpg" />
-	<meta property="fb:app_id" content="398097427052792" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Become a skilled developer overnight"/>
+    <meta property="og:description"
+          content="I just gained some web development skills - wanna boost yours as well? If you want all this to become true, and to gain even more skills in real life, better start learning hard in Telerik Academy"/>
+    <meta property="og:image" content="images/wireframe_v1.jpg"/>
+    <meta property="fb:app_id" content="398097427052792"/>
     <title>Become a Dev Master Overnight</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -18,28 +19,32 @@
 </head>
 <body>
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '398097427052792',
-      xfbml      : true,
-      version    : 'v2.4'
-    });
-	FB.ui(
-	 {
-	  method: 'share',
-	  href: 'https://developers.facebook.com/docs/'
-	}, function(response){});
-  };
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '398097427052792',
+            xfbml: true,
+            version: 'v2.4'
+        });
+        FB.ui(
+                {
+                    method: 'share',
+                    href: 'https://developers.facebook.com/docs/'
+                }, function (response) {
+                });
+    };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-   
-   
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
 </script>
 <header>
     <nav class="navbar navbar-default">
@@ -56,8 +61,8 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--<ul class="nav navbar-nav">-->
-                    <!--<li class="active"><a href="#">Become a Dev <span class="sr-only">(current)</span></a></li>-->
-                    <!--<li><a href="#">Rate other Devs</a></li>-->
+                <!--<li class="active"><a href="#">Become a Dev <span class="sr-only">(current)</span></a></li>-->
+                <!--<li><a href="#">Rate other Devs</a></li>-->
                 <!--</ul>-->
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -81,88 +86,97 @@
     </nav>
 </header>
 <main>
-	<div class="container-fluid">
-		<canvas id="test"></canvas>
-		<div class="overlay">
-			<div class="overlay-inner">
-			</div>
-		</div>
+    <div class="container-fluid">
+        <canvas id="test"></canvas>
+        <div class="overlay">
+            <div class="overlay-inner">
+            </div>
+        </div>
         <video autoplay id="camera"></video>
         <img src="" id="shot">
+
         <div id="shotButtonWrapper">
-            <button id="takeShot">Test Button</button>
+            <button id="takeShot">Take Photo</button>
         </div>
-	</div>
+    </div>
 </main>
 <aside id="welcome_screen">
-	<div class="welcome_holder">
-		<div class="row">
-			<div class="col-sm-6 banner">
-			</div>
-			<div class="col-sm-6 action">
-				<h1>Become a skilled developer overnight!</h1>
-				<p class="step"><span>1</span> Upload your photo</p>
-				<p class="step"><span>2</span> Add stickers for your specialties</p>
-				<p class="step"><span>3</span> Share your proggress</p>
-				<div id="sliding_container">
-					<div class="row slideable">
-						<div class="col-xs-6 login_box">
-							<h2>Boost your skills NOW</h2>
-							<p>Not a member yet? <span id="switch_to_register">So sign up!</span></p>
-							<form id="login_form">
-								Username:<br>
-								<input type="text" name="username">
-								<br>
-								Password:<br>
-								<input type="password" name="password">
-								<br>
-								<input class="login" type="submit" value="Login">
-							</form>
-						</div>
-						<div class="col-xs-6 register_box">
-							<h2>Create NEW account</h2>
-							<p>Already a member? <span id="switch_to_login">So log in!</span></p>
-							<form id="register_form">
-								Username:<br>
-								<input type="text" name="username">
-								<br>
-								Password:<br>
-								<input type="password" name="password">
-								<br>
-								<input class="login" type="submit" value="Login">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="welcome_holder">
+        <div class="row">
+            <div class="col-sm-6 banner">
+            </div>
+            <div class="col-sm-6 action">
+                <h1>Become a skilled developer overnight!</h1>
+
+                <p class="step"><span>1</span> Upload your photo</p>
+
+                <p class="step"><span>2</span> Add stickers for your specialties</p>
+
+                <p class="step"><span>3</span> Share your proggress</p>
+
+                <div id="sliding_container">
+                    <div class="row slideable">
+                        <div class="col-xs-6 login_box">
+                            <h2>Boost your skills NOW</h2>
+
+                            <p>Not a member yet? <span id="switch_to_register">So sign up!</span></p>
+
+                            <form id="login_form">
+                                Username:<br>
+                                <input type="text" name="username">
+                                <br>
+                                Password:<br>
+                                <input type="password" name="password">
+                                <br>
+                                <input class="login" type="submit" value="Login">
+                            </form>
+                        </div>
+                        <div class="col-xs-6 register_box">
+                            <h2>Create NEW account</h2>
+
+                            <p>Already a member? <span id="switch_to_login">So log in!</span></p>
+
+                            <form id="register_form">
+                                Username:<br>
+                                <input type="text" name="username">
+                                <br>
+                                Password:<br>
+                                <input type="password" name="password">
+                                <br>
+                                <input class="login" type="submit" value="Login">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </aside>
 <aside id="toolbar">
     <!--<input id="fileInput" type="file" accept="image"/>-->
     <button id="load_photo" class="btn btn-default">Load</button>
-	<button id="take_snapshot" class="btn btn-default">Take Photo</button>
-	<button id="reset" class="btn btn-default">Reset</button>
+    <button id="take_snapshot" class="btn btn-default">Take Photo</button>
+    <button id="reset" class="btn btn-default">Reset</button>
     <button id="crop_image" class="btn btn-default">Crop</button>
-	<button id="save_image_button" class="btn btn-default">Save</button>
-	<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+    <button id="save_image_button" class="btn btn-default">Save</button>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
         <button id="share_picture" class="btn btn-default">
             Share
         </button>
     </a>
 </aside>
 <section id="sticker_palette"></section>
-<div class="fb-share-button" 
-        data-href="https://cdn.rawgit.com/bnesheva/JSApps-team-SeaBreeze/b3246610c68154e2813d06d038a0dbeee2e1e809/index.html" 
-        data-layout="button_count">
-    </div>
+<div class="fb-share-button"
+     data-href="https://cdn.rawgit.com/bnesheva/JSApps-team-SeaBreeze/b3246610c68154e2813d06d038a0dbeee2e1e809/index.html"
+     data-layout="button_count">
+</div>
 
 <footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course</footer>
 
 <script>
 
     System.import('scripts/Main.js')
-            .then(function(Service) {
+            .then(function (Service) {
                 Service.main();
             })
 

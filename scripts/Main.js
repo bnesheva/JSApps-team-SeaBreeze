@@ -5,6 +5,7 @@ var stickerThumbnails = require('./services/stickerThumbnails.js');
 var ImagesService = require('./services/ImagesService.js');
 var UserServices = require('./services/UserServices.js');
 var LoadPicModule = require('./load_picture.js');
+var TakePictureModeule = require('./take_photo.js');
 var resizeableImage = require('./services/resizeableImage.js');
 var imageAddings = require('./services/imageAddings.js');
 var DB = require('./DBOperations.js');
@@ -20,6 +21,7 @@ var Main = (function () {
             var IS = Object.create(ImagesService).init();
 
             LoadPicModule;
+            TakePictureModeule;
 
             UserServices.createUser('HAHAHO','kek');
 

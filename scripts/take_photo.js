@@ -1,56 +1,64 @@
-var takePictureButton = document.getElementById('take_snapshot');
+var ImagesService = require('./services/ImagesService.js');
+var imageAddings = require('./services/imageAddings.js');
 
-takePictureButton.addEventListener('click', function () {
-    var video = document.getElementById('camera');
-    video.style.display = 'inline-block';
+var takePicture = (function(){
+    IS = Object.create(ImagesService).init();
+    var takePictureButton = document.getElementById('take_snapshot');
 
-    var showButton = document.getElementById('shotButtonWrapper');
-    showButton.style.display = 'inline-block';
+    takePictureButton.addEventListener('click', function () {
+        var video = document.getElementById('camera');
+        video.style.display = 'inline-block';
 
-    var takeShotButton = document.getElementById('takeShot');
+        var showButton = document.getElementById('shotButtonWrapper');
+        showButton.style.display = 'inline-block';
 
-    var canvas = document.getElementById('test');
-    canvas.width = '450';
-    canvas.height = '430';
-    canvas.style.display = 'none';
+        var takeShotButton = document.getElementById('takeShot');
 
-    var localMediaStream = null;
-    var vgaConstraints = {
-        video: {
-            mandatory: {
-                maxWidth: 600,
-                maxHeight: 750
+        var canvas = document.getElementById('test');
+        canvas.width = '450';
+        canvas.height = '430';
+        canvas.style.display = 'none';
+
+        var localMediaStream = null;
+        var vgaConstraints = {
+            video: {
+                mandatory: {
+                    maxWidth: 600,
+                    maxHeight: 750
+                }
             }
-        }
-    };
+        };
 
-    var errorCallback = function (e) {
-        console.log('Reeeejected!', e);
-    };
+        var errorCallback = function (e) {
+            console.log('Rejected!', e);
+        };
 
-    takeShotButton.addEventListener('click', snapshot, false);
+        takeShotButton.addEventListener('click', snapshot, false);
 
 // working cross-browser
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia;
+        navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
 
-    function snapshot() {
-        if (localMediaStream) {
+        function snapshot() {
+            if (localMediaStream) {
 
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(video, -100, -50);
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(video, -100, -50);
 
-            var picSrc = canvas.toDataURL('image/webp');
-            imageAddings.addPhoto(picSrc);
-            video.style.display = 'none';
-            showButton.style.display = 'none';
+                var picSrc = canvas.toDataURL('image/webp');
+                imageAddings.addPhoto(picSrc);
+                video.style.display = 'none';
+                showButton.style.display = 'none';
+            }
         }
-    }
 
-    navigator.getUserMedia(vgaConstraints, function (stream) {
-        video.src = window.URL.createObjectURL(stream);
-        localMediaStream = stream;
-    }, errorCallback);
-});
+        navigator.getUserMedia(vgaConstraints, function (stream) {
+            video.src = window.URL.createObjectURL(stream);
+            localMediaStream = stream;
+        }, errorCallback);
+    });
+}());
+
+module.exports = takePicture;
