@@ -5,34 +5,29 @@ var takePicture = (function () {
     var takePictureButton = document.getElementById('take_snapshot');
 
     takePictureButton.addEventListener('click', function () {
-        var video = document.getElementById('camera');
-        video.style.display = 'inline-block';
+        var video = document.getElementById('camera'),
+            $showButton = $('#shotButtonWrapper'),
+            $takeShotButton = $('#takeShot'),
+            canvas = document.getElementById('test'),
+            localMediaStream = null,
+            vgaConstraints = {
+                video: {
+                    mandatory: {
+                        maxWidth: 600,
+                        maxHeight: 750
+                    }
+                }
+            },
+            errorCallback = function (e) {
+                console.log('Rejected!', e);
+            };
 
-        var showButton = document.getElementById('shotButtonWrapper');
-        showButton.style.display = 'inline-block';
-
-        var takeShotButton = document.getElementById('takeShot');
-
-        var canvas = document.getElementById('test');
         canvas.width = '450';
         canvas.height = '430';
         canvas.style.display = 'none';
-
-        var localMediaStream = null;
-        var vgaConstraints = {
-            video: {
-                mandatory: {
-                    maxWidth: 600,
-                    maxHeight: 750
-                }
-            }
-        };
-
-        var errorCallback = function (e) {
-            console.log('Rejected!', e);
-        };
-
-        takeShotButton.addEventListener('click', snapshot, false);
+        video.style.display = 'inline-block';
+        $showButton.css('display', 'inline-block');
+        $takeShotButton.on('click', snapshot);
 
         // working cross-browser
         navigator.getUserMedia = navigator.getUserMedia ||
@@ -49,7 +44,7 @@ var takePicture = (function () {
                 var picSrc = canvas.toDataURL('image/webp');
                 imageAddings.addPhoto(picSrc);
                 video.style.display = 'none';
-                showButton.style.display = 'none';
+                $showButton.css('display', 'none');
             }
         }
 
