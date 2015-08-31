@@ -3,8 +3,8 @@ var imageAddings = require('./services/imageAddings.js');
 
 var LoadPic = (function LoadPic() {
     var loadedPictureBtn = $('#load_photo'),
-        $fileInput = $("<input/>").attr('type', 'file'),
-        $saveButton = $('#save_image_button');
+        $saveButton = $('#save_image_button'),
+        $fileInput = $("<input/>").attr('type', 'file');
 
     IS = Object.create(ImagesService).init();
 
@@ -25,10 +25,8 @@ var LoadPic = (function LoadPic() {
         var fileInput = event.target.files;
 
         if (fileInput.length > 0) {
-
             var windowURL = window.URL || window.webkitURL;
             var picURL = windowURL.createObjectURL(fileInput[0]);
-
             imageAddings.addPhoto(picURL);
         }
     }

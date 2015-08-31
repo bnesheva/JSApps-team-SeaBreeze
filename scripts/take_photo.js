@@ -1,8 +1,8 @@
-var ImagesService = require('./services/ImagesService.js');
-var imageAddings = require('./services/imageAddings.js');
+// var ImagesService = require('./services/ImagesService.js');
+ var imageAddings = require('./services/imageAddings.js');
 
 var takePicture = (function(){
-    IS = Object.create(ImagesService).init();
+    //IS = Object.create(ImagesService).init();
     var takePictureButton = document.getElementById('take_snapshot');
 
     takePictureButton.addEventListener('click', function () {
