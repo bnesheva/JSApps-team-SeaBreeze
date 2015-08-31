@@ -2,6 +2,8 @@
  * Created by Nick on 26/8/2015.
  */
 
+var $ = require('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js')
+
 var DBOperationsService = (function () {
 
     var DBService = {},
@@ -32,10 +34,10 @@ var DBOperationsService = (function () {
             url: 'http://api.everlive.com/v1/' + APIKey + '/Users',
             data: JSON.stringify(user),
             success: function(data) {
-                console.log('Successfully added user: ' + data);
+                console.log('Successfully added user: ', data);
             },
             error: function(data) {
-                throw new Exception('Error in adding user: ' + data);
+                throw new Exception('Error in adding user: ', data);
             }
         });
     };

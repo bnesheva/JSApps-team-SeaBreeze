@@ -12,21 +12,24 @@ var DB = require('./DBOperations.js');
 var Main = (function () {
     var Service = {};
         
-        UserServices.createUser('lel','kek');
         Service.main = function() {
-        var IS = Object.create(ImagesService).init();
+            var IS = Object.create(ImagesService).init();
 
-        LoadPicModule;
+            LoadPicModule;
+
+            UserServices.createUser('HAHAHO','kek');
 
 
 
-        var $fileInput = $('<input/>')
-            .attr('type', "file")
-            .appendTo(document.body);
-        
-        $fileInput.on('change', function() {
-            IS.UploadImage(this.files[0]);
-        });
+
+
+            var $fileInput = $('<input/>')
+                .attr('type', "file")
+                .appendTo(document.body);
+
+            $fileInput.on('change', function() {
+                IS.UploadImage(this.files[0]);
+            });
     };
 
     return Service;

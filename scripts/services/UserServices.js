@@ -7,7 +7,7 @@ var UserServices = (function () {
 
     userServices = {
         createUser: function (username, password) {
-            var userIsTaken;
+            var userIsTaken = false;
 
             DBOperations.GetAllUsers()
                 .success()
@@ -18,7 +18,11 @@ var UserServices = (function () {
                     });
 
                     if (!userIsTaken) {
-                        DBOperations.AddUser();
+                        DBOperations.AddUser({
+                            Username: username,
+                            Password: password,
+                            PicsArray: []
+                        });
                     }
                 });
         },

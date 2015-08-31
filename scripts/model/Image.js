@@ -3,6 +3,7 @@
  */
 
 var Image = (function () {
+    var _ = require("bower_components/underscore.js")
 
     var image = Object.create({});
 
