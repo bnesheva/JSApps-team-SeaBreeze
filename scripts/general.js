@@ -60,6 +60,7 @@ function publishStream(img) {
         if (response.status === 'connected') {
             var uid = response.authResponse.userID;
             accessToken = response.authResponse.accessToken;
+            conslole.log(accessToken);
         }
         else if (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
@@ -112,6 +113,9 @@ function publishStream(img) {
     }
 }
 
+
+var testToken;
+
 $(document).ready(function () {
 
     FB.init({
@@ -128,10 +132,12 @@ $(document).ready(function () {
         if (response.authResponse) {
             $('#AccessToken').val(response.authResponse.accessToken);
             console.log('logged');
+            testToken = response.authResponse.accessToken;
         } else {
             // do something...maybe show a login prompt
             console.log('do something');
         }
+        console.log(testToken);
     });
 
 
