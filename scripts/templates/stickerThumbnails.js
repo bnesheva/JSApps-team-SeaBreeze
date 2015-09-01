@@ -1,6 +1,6 @@
 // JavaScript source code
 
-function drawHTML() {
+function drawStickerThumbnails() {
     return function (selector) {
         var template =
         '<div class="container-fluid sticker_container">' +
@@ -42,5 +42,5 @@ function drawHTML() {
     };
 };
 
-var func = drawHTML();
+var func = drawStickerThumbnails();
 func('#sticker_palette');

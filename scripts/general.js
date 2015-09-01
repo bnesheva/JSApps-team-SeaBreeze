@@ -13,7 +13,7 @@ $('#switch_to_login').on('click', function () {
 });
 
 ////// fake functionality for the login
-$('.welcome_holder h2').on('click', function () {
+$(document).ready('.welcome_holder h2').on('click', function () {
     $('#welcome_screen').hide();
 });
 
