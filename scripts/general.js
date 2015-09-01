@@ -60,7 +60,7 @@ function publishStream(img) {
         if (response.status === 'connected') {
             var uid = response.authResponse.userID;
             accessToken = response.authResponse.accessToken;
-            conslole.log(accessToken);
+            console.log(accessToken);
         }
         else if (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
