@@ -41,7 +41,26 @@ var ImagesService = (function () {
         FR.readAsDataURL(inputFile);
     };
 
+    ImagesService.UploadImageFromData = function(data, userId) {
+        var token = localStorage.getItem('currUserToken'),
+            imgData = data.split(',')[1],
+            imgType = data.split(',')[0].split(';')[0].split(':')[1];
+        
+        var img = {
+            "Filename": "new photo",
+            "ContentType": imgType,
+            "base64": imgData,
+            "UserId": userId
+        };
 
+        DB.AddImage(img, token)
+            .success(function (data) {
+                console.log('Successfully added img: ', data)
+            })
+            .fail(function(data) {
+                console.log('Failed adding img ', data);
+            })
+    }
 
     return ImagesService;
 })();

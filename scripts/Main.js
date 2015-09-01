@@ -96,10 +96,13 @@ var Main = (function () {
                 // window.open(crop_canvas.toDataURL("image/png"));
 
                 var imgToAppend = crop_canvas.toDataURL("image/png");
+                console.log(imgToAppend);
+
+                ImagesService.UploadImageFromData(imgToAppend);
+
                 var newWindow = window.open();
                 $(newWindow.document.body).append('hello')
                 .append('<img src="' + imgToAppend + '" width="300" height="300" />')
-
 
             }
             else {
