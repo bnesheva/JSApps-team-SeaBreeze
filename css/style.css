@@ -58,9 +58,47 @@ main .container-fluid {
     width: 44px;
     height: 44px;
     white-space: normal;
-    padding: 0;
+    padding: 32px 0 0 0;
+	background: url(../images/icons.svg) no-repeat;
+	background-size: 250px 97px;
+	margin: 0 2px;
 }
-
+#toolbar #load_photo {
+	background-position: 7px -10px;
+}
+#toolbar #load_photo:hover, #toolbar #load_photo:active, #toolbar #load_photo:focus  {
+	background-position: 7px -56px;
+}
+#toolbar #take_snapshot {
+	background-position: -116px -10px;
+}
+#toolbar #take_snapshot:hover, #toolbar #take_snapshot:active, #toolbar #take_snapshot:focus {
+	background-position: -116px -56px;
+}
+#toolbar #reset {
+	background-position: -34px -10px;
+}
+#toolbar #reset:hover, #toolbar #reset:active, #toolbar #reset:focus {
+	background-position: -34px -56px;
+}
+#toolbar #crop_image {
+	background-position: -72px -10px;
+}
+#toolbar #crop_image:hover, #toolbar #crop_image:active, #toolbar #crop_image:focus {
+	background-position: -72px -56px;
+}
+#toolbar #save_image_button {
+	background-position: -158px -10px;
+}
+#toolbar #save_image_button:hover, #toolbar #save_image_button:active, #toolbar #save_image_button:focus {
+	background-position: -158px -56px;
+}
+#toolbar #share_picture {
+	background-position: -205px -10px;
+}
+#toolbar #share_picture:hover, #toolbar #share_picture:active, #toolbar #share_picture:focus {
+	background-position: -205px -56px;
+}
 .btn-default {
     border: none;
     background: transparent;
@@ -118,8 +156,46 @@ main .container-fluid > img {
 
     #toolbar .btn {
         margin: 5px;
+		padding: 0;
+		text-indent: 53px;
+		overflow: hidden;
     }
-
+	#toolbar #load_photo {
+	background-position: 6px -6px;
+	}
+	#toolbar #load_photo:hover, #toolbar #load_photo:active, #toolbar #load_photo:focus  {
+		background-position: 6px -52px;
+	}
+	#toolbar #take_snapshot {
+		background-position: -116px -6px;
+	}
+	#toolbar #take_snapshot:hover, #toolbar #take_snapshot:active, #toolbar #take_snapshot:focus {
+		background-position: -116px -52px;
+	}
+	#toolbar #reset {
+		background-position: -34px -6px;
+	}
+	#toolbar #reset:hover, #toolbar #reset:active, #toolbar #reset:focus {
+		background-position: -34px -52px;
+	}
+	#toolbar #crop_image {
+		background-position: -72px -6px;
+	}
+	#toolbar #crop_image:hover, #toolbar #crop_image:active, #toolbar #crop_image:focus {
+		background-position: -72px -52px;
+	}
+	#toolbar #save_image_button {
+		background-position: -158px -3px;
+	}
+	#toolbar #save_image_button:hover, #toolbar #save_image_button:active, #toolbar #save_image_button:focus {
+		background-position: -158px -49px;
+	}
+	#toolbar #share_picture {
+		background-position: -205px -6px;
+	}
+	#toolbar #share_picture:hover, #toolbar #share_picture:active, #toolbar #share_picture:focus {
+		background-position: -205px -52px;
+	}
     footer {
         position: fixed;
         bottom: 0;
