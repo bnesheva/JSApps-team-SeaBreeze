@@ -229,7 +229,7 @@ var Main = (function () {
         $(document).ready(function () {
 
             FB.init({
-                appId: '398097427052792',
+                appId: '398096413719560',
                 cookie: true,
                 xfbml: true,
                 status: true
