@@ -2,13 +2,14 @@ var imageAddings = require('./services/imageAddings.js');
 
 var takePicture = (function () {
 
-    var takePictureButton = document.getElementById('take_snapshot');
+    var takePictureButton = document.getElementById('take_snapshot')
 
     takePictureButton.addEventListener('click', function () {
+
         var video = document.getElementById('camera'),
             $showButton = $('#shotButtonWrapper'),
             $takeShotButton = $('#takeShot'),
-            canvas = document.getElementById('test'),
+            canvas = $('<canvas/>'),
             localMediaStream = null,
             vgaConstraints = {
                 video: {
@@ -22,9 +23,9 @@ var takePicture = (function () {
                 console.log('Rejected!', e);
             };
 
-        canvas.width = '450';
-        canvas.height = '430';
-        canvas.style.display = 'none';
+        canvas[0].width = '450';
+        canvas[0].height = '430';
+        canvas.css('display','none');
         video.style.display = 'inline-block';
         $showButton.css('display', 'inline-block');
         $takeShotButton.on('click', snapshot);
@@ -38,10 +39,10 @@ var takePicture = (function () {
         function snapshot() {
             if (localMediaStream) {
 
-                var ctx = canvas.getContext('2d');
+                var ctx = canvas[0].getContext('2d');
                 ctx.drawImage(video, -100, -50);
 
-                var picSrc = canvas.toDataURL('image/webp');
+                var picSrc = canvas[0].toDataURL('image/webp');
                 imageAddings.addPhoto(picSrc);
                 video.style.display = 'none';
                 $showButton.css('display', 'none');
