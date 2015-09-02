@@ -8,10 +8,6 @@ var takePicture = (function () {
 
     IS = Object.create(ImagesService).init();
 
-    $saveButton.on('click', function () {
-        IS.UploadImage($fileInput[0].files[0], localStorage.getItem('currUserID'));
-    });
-
     takePictureButton.addEventListener('click', function () {
 
         var video = document.getElementById('camera'),
