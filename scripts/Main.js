@@ -100,7 +100,7 @@ var Main = (function () {
 
                 console.log(imgToAppend);
 
-              //  ImagesService.UploadImageFromData(imgToAppend);
+                ImagesService.UploadImageFromData(imgToAppend);
                 /*
                 var newWindow = window.open();
                 $(newWindow.document.body).append('hello')
