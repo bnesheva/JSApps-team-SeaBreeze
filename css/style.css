@@ -532,6 +532,75 @@ input {
 }
 
 /*--------------------- end welcone screen*/
+
+
+/*--------------------- Facebook popup*/
+
+#popup_to_share {
+	position: fixed;
+	z-index: 11;
+	background: rgba(0,0,0,0.7);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: scroll;
+}
+#popup_to_share .container {
+	background: #fff;
+	border-radius: 3px;
+	margin: 30px auto;
+	padding: 0;
+	text-align: center;
+	width: 300px;
+	
+}
+#popup_to_share .row {
+	padding: 0;
+}
+#popup_to_share .col-sm-4 {
+	margin: 0;
+}
+#popup_to_share button {
+	border-top: 1px solid #ccc;
+	padding: 10px;
+	font-size: 18px;
+	width: 100%;
+}
+#popup_to_share button.close {
+	border-top: 0;
+}
+#img_to_share {
+	border: 2px solid #ccc;
+}
+.fbLoginContainer {
+	padding: 10px 0;
+}
+#to_detach {
+	margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+	#popup_to_share .container {
+		padding: 30px;
+		width: 600px;
+	}
+	#popup_to_share button {
+		padding: 6px 12px;
+		font-size: 14px;
+		width: auto;
+	}
+	.fbLoginContainer {
+		margin: 10px;
+	}
+	#img_to_share {
+		margin: 30px 0;
+	}
+	.fb_iframe_widget.fb-like {
+		margin: 5px;
+		float: right;
+	}
+}
+
 #fileInput {
     position: fixed;
     top: -1000px;
@@ -567,4 +636,7 @@ video {
 
 input[type=file] {
     display: none;
+}
+.hidden{
+	visibility: none;
 }
