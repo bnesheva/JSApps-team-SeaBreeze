@@ -212,6 +212,7 @@ main .container-fluid > img {
         border-radius: 0 0 3px 3px;
         width: 250px;
         right: 0px;
+		margin-top: 14px;
     }
 
     .profile_holder:hover .profile_popup {
@@ -579,6 +580,20 @@ input {
 #to_detach {
 	margin-bottom: 20px;
 }
+.profile_holder {
+	padding: 14px 10px;
+}
+.profile_holder:hover {
+	background-color: #ebebeb;
+}
+.profile_holder input.btn {
+	display: block;
+	width: 100%;
+	padding: 10px 0;
+	border-top: 1px solid #ccc;
+	border-radius: none;
+	background: #f0f0f0;
+}
 @media screen and (min-width: 768px) {
 	#popup_to_share .container {
 		padding: 30px;
@@ -588,6 +603,7 @@ input {
 		padding: 6px 12px;
 		font-size: 14px;
 		width: auto;
+		border-radius: 0;
 	}
 	.fbLoginContainer {
 		margin: 10px;
@@ -598,6 +614,12 @@ input {
 	.fb_iframe_widget.fb-like {
 		margin: 5px;
 		float: right;
+	}
+	.profile_holder input.btn {
+		display: inline;
+		padding: 5px 10px;
+		width: auto;
+		border-radius: 5px;
 	}
 }
 
@@ -640,3 +662,4 @@ input[type=file] {
 .hidden{
 	visibility: none;
 }
+

@@ -27,9 +27,7 @@
     <!--Password:-->
     <!--<input id="password" type="text" name="password">-->
     <!--<input id="loginButton"  type="submit" value="Log in">-->
-    <input id="testBtn"  type="submit" value="TEST">
-    <input id="showLoginBtn"  type="submit" value="Show log in">
-    <input id="logoutBtn"  type="submit" value="Log out">
+    
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -51,14 +49,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <div class="profile_holder">
-                            <a href="#" id="show_profile">User</a>
-
+                            <span id="show_profile">User</span>
+                            <input id="showLoginBtn" class="btn btn-default btn-xs" type="submit" value="Show log in">
+                            <input id="logoutBtn" class="btn btn-default btn-xs" type="submit" value="Log out">
                             <div class="profile_popup">
                                 <div class="row">
                                     <div class="col-xs-4">Image</div>
                                     <div class="col-xs-8">
                                         <p>Name</p>
-                                        <button class="btn btn-default btn-xs">Log Off</button>
+                                        <input id="testBtn" class="btn btn-default btn-xs" type="submit" value="TEST">
+                                        
                                     </div>
                                 </div>
                             </div>
