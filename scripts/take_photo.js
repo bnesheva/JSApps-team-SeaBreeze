@@ -1,8 +1,16 @@
+var ImagesService = require('./services/ImagesService.js');
 var imageAddings = require('./services/imageAddings.js');
 
 var takePicture = (function () {
 
-    var takePictureButton = document.getElementById('take_snapshot')
+    var takePictureButton = document.getElementById('take_snapshot'),
+        $saveButton = $('#save_image_button');
+
+    IS = Object.create(ImagesService).init();
+
+    $saveButton.on('click', function () {
+        IS.UploadImage($fileInput[0].files[0], localStorage.getItem('currUserID'));
+    });
 
     takePictureButton.addEventListener('click', function () {
 
@@ -25,7 +33,7 @@ var takePicture = (function () {
 
         canvas[0].width = '450';
         canvas[0].height = '430';
-        canvas.css('display','none');
+        canvas.css('display', 'none');
         video.style.display = 'inline-block';
         $showButton.css('display', 'inline-block');
         $takeShotButton.on('click', snapshot);
@@ -42,8 +50,7 @@ var takePicture = (function () {
                 var ctx = canvas[0].getContext('2d');
                 ctx.drawImage(video, -100, -50);
 
-                var picSrc = canvas[0].toDataURL('image/webp');
-                imageAddings.addPhoto(picSrc);
+                imageAddings.addPhoto(canvas[0].toDataURL('image/webp'));
                 video.style.display = 'none';
                 $showButton.css('display', 'none');
             }

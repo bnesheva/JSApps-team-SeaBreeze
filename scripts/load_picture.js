@@ -9,8 +9,8 @@ var LoadPic = (function LoadPic() {
     IS = Object.create(ImagesService).init();
 
     loadedPictureBtn.on('click', function () {
-        $('#camera').css('display','none');
-        $('#shotButtonWrapper').css('display','none');
+        $('#camera').css('display', 'none');
+        $('#shotButtonWrapper').css('display', 'none');
         $fileInput.click();
     });
 
@@ -27,10 +27,15 @@ var LoadPic = (function LoadPic() {
 
         var fileInput = event.target.files;
 
-        if (fileInput.length > 0) {
-            var windowURL = window.URL || window.webkitURL;
-            var picURL = windowURL.createObjectURL(fileInput[0]);
-            imageAddings.addPhoto(picURL);
+        if (fileInput[0].type === 'image/jpeg') {
+            if (fileInput.length > 0) {
+                var windowURL = window.URL || window.webkitURL;
+                var picURL = windowURL.createObjectURL(fileInput[0]);
+                console.log(fileInput);
+                imageAddings.addPhoto(picURL);
+            }
+        } else {
+            alert('You can load only pictures!');
         }
     }
 })();
