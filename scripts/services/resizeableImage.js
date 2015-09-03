@@ -35,30 +35,22 @@ var resizeableImage = (function () {
         }
     }
 
-    
-
     var resizeableImage = Object.create({});
     resizeableImage.init = function (src, className) {
         var id = imageIdCounter +=1;
         var imageLoaded = '<img class="' + className + '" src="' + src + '"/>'
         $('main .container-fluid').append(imageLoaded);
-        
-
+ 
         resizeableImage.image_target = getTargetImg(className);
-        // When resizing, we will always use this copy of the original as the base
         orig_src.src = resizeableImage.image_target.src;
 
-        // Wrap the image with the container and add resize handles
         $(resizeableImage.image_target).wrap('<div id="id-' + id + '"class="resize-container"></div>')
         .before('<span class="resize-handle resize-handle-nw"></span>')
         .before('<span class="resize-handle resize-handle-ne"></span>')
         .after('<span class="resize-handle resize-handle-se"></span>')
         .after('<span class="resize-handle resize-handle-sw"></span>');
 
-        // Assign the container to a variable
         $container = $('#id-' + id + '.resize-container');
-
-        // Add events
         $container.on('mousedown touchstart', '.resize-handle', resizeableImage.startResize);
         $container.on('mousedown touchstart', 'img', resizeableImage.startMoving);
 
@@ -66,7 +58,6 @@ var resizeableImage = (function () {
     };
 
     resizeableImage.saveEventState = function (e) {
-        // Save the initial event details and container state
         event_state.container_width = $container.width();
         event_state.container_height = $container.height();
         event_state.container_left = $container.offset().left;
@@ -74,8 +65,6 @@ var resizeableImage = (function () {
         event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
 
-        // This is a fix for mobile safari
-        // For some reason it does not allow a direct copy of the touches property
         if (typeof e.originalEvent.touches !== 'undefined') {
             event_state.touches = [];
             $.each(e.originalEvent.touches, function (i, ob) {
@@ -101,15 +90,12 @@ var resizeableImage = (function () {
         $(document).off('mouseup touchend', resizeableImage.endResize);
         $(document).off('mousemove touchmove', resizeableImage.resizing);
 
-        var containerId = ($container.attr('id'));
-       
+        var containerId = ($container.attr('id'));      
         var currentContainerObj = getCurrentContainer(containerId);
         currentContainerObj.containerWidth = $container.width();
         currentContainerObj.containerHeight = $container.height();
         currentContainerObj.containerLeft = $container.offset().left;
         currentContainerObj.containerTop = $container.offset().top;
-
-        console.log(currentContainerObj);
 
     };
 
@@ -118,7 +104,6 @@ var resizeableImage = (function () {
         mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
         mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
 
-        // Position image differently depending on the corner dragged and constraints
         if ($(event_state.evnt.target).hasClass('resize-handle-se')) {
             width = mouse.x - event_state.container_left;
             height = mouse.y - event_state.container_top;
@@ -146,16 +131,12 @@ var resizeableImage = (function () {
                 top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
             }
         }
-
-        // Optionally maintain aspect ratio
         if (constrain || e.shiftKey) {
             height = width / orig_src.width * orig_src.height;
         }
-
         if (width > min_width && height > min_height && width < max_width && height < max_height) {
-            // To improve performance you might limit how often resizeImage() is called
+
             resizeableImage.resizeImage(width, height);
-            // Without this Firefox will not re-calculate the the image dimensions until drag end
             $container.offset({ 'left': left, 'top': top });
         }
     };
@@ -185,7 +166,6 @@ var resizeableImage = (function () {
         $(document).off('mousemove touchmove', resizeableImage.moving);
 
         var containerId = ($container.attr('id'));
-
         var currentContainerObj = getCurrentContainer(containerId);
         currentContainerObj.containerWidth = $container.width();
         currentContainerObj.containerHeight = $container.height();
@@ -206,7 +186,6 @@ var resizeableImage = (function () {
             'left': mouse.x - (event_state.mouse_x - event_state.container_left),
             'top': mouse.y - (event_state.mouse_y - event_state.container_top)
         });
-        // Watch for pinch zoom gesture while moving
         if (event_state.touches && event_state.touches.length > 1 && touches.length > 1) {
             var width = event_state.container_width, height = event_state.container_height;
             var a = event_state.touches[0].clientX - event_state.touches[1].clientX;
@@ -225,14 +204,9 @@ var resizeableImage = (function () {
 
             width = width * ratio;
             height = height * ratio;
-            // To improve performance you might limit how often resizeImage() is called
             resizeableImage.resizeImage(width, height);
         }
     };
-
-
-
-    //final return
     return resizeableImage;
 
 }());

@@ -6,10 +6,7 @@ var imageAddings = (function () {
 
     var imageAddings = {
         addPhoto: function (picUrl) {
-            console.log('start photo')
-           // imageAddings.removeImage('photo');
             if ($('.resize-container').hasClass('photo')) {
-              //  $('.resize-container.photo').remove();
             }
             var photo = (function (parent) {
                 var photo = Object.create(parent, {});
@@ -28,12 +25,10 @@ var imageAddings = (function () {
             var $outer = $(selector).parent('.resize-container');
             $outer.addClass('photo selected');
 
-            console.log(photo);
             photo.name = 'photo';
             photo.containerId = $outer.attr('id');
             photo.image = picUrl;
             images.push(photo);
-            console.log(images);
 
         },
         addSticker: function () {
@@ -52,25 +47,20 @@ var imageAddings = (function () {
                 }(resizeableImage));
 
                 sticker.init(src, 'sticker');
-
                 $('.resize-container').removeClass('selected');
-
 
                 var selector = imageAddings.splitUrl(src);
                 var $outer = $(selector).parent('.resize-container');
                 $outer.addClass('sticker selected');
 
-                console.log(sticker)
                 sticker.name = 'sticker';
                 sticker.containerId = $outer.attr('id');
                 sticker.image = src;
                 images.push(sticker);
-                console.log(images);
             } else {
                 alert('You added more than enough stickers already! Some people may decide you overrate your dev abilities ..');
             }
         },
-        ///helpers
         removeImage: function (name) {
             var removed = $.grep(images, function (e) {
                 return e.name != name;
@@ -91,8 +81,6 @@ var imageAddings = (function () {
             return 'img[src$="' + filename + '"]'
         }
     };
-
-//final return
 return imageAddings;
 
 }());
