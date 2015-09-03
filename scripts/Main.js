@@ -12,8 +12,7 @@ var TakePictureModeule = require('./take_photo.js');
 var resizeableImage = require('./services/resizeableImage.js');
 var imageAddings = require('./services/imageAddings.js');
 var DB = require('./DBOperations.js');
-
-var UIModule = require('./UIModule.js')
+var UIModule = require('./UIModule.js');
 
 // app start point
 // Temp
@@ -23,11 +22,8 @@ var Main = (function () {
     var Service = {};
         
         Service.main = function() {
-
             LoadPicModule;
-
             TakePictureModeule;
-
             UIModule;
 
             var $fileInput = $('<input/>')
@@ -41,12 +37,10 @@ var Main = (function () {
 
     ///////////////////////////////////////// Real Functionality
         var loggedToFB = false;
-
         $('.sticker_thumbnail').on('click', imageAddings.addSticker);
 
     /////// cropping
         crop = function () {
-
             var crop_canvas, left, top, imgToDrawSrc, toGet, imgToDraw, widthToDraw, heightToDraw, i,
                 len = images.length,
                 width = $('.overlay').width(),
@@ -77,14 +71,7 @@ var Main = (function () {
                 var imgToAppend = crop_canvas.toDataURL("image/png");
 
                 console.log(imgToAppend);
-
                 ImagesService.UploadImageFromData(imgToAppend);
-                /*
-                var newWindow = window.open();
-                $(newWindow.document.body).append('hello')
-                .append('<img src="' + imgToAppend + '" width="300" height="300" />')
-                */
-
             }
             else {
                 alert('load image to procceed');
@@ -93,7 +80,6 @@ var Main = (function () {
 
             $('#fb_share').on('click', publishStream);
         };
-
     //// end crop
 
         function createPopupToShare(img) {
@@ -115,9 +101,11 @@ var Main = (function () {
             var downloadLink = $('#save_local').wrap('<a id="downloadImg" download="You as dev guru" href="' + $('#img_to_share').attr('src') + '"></a>');
             $('.fbLoginContainer').append(fbLogin);
             console.log(loggedToFB);
+
             if (loggedToFB) {
                 $('#fbLoginContainer').addClass('hidden');
             }
+
             $('#popup_to_share .close').on('click', function () {
                 $('#popup_to_share').remove();
             });
@@ -135,10 +123,6 @@ var Main = (function () {
 
             return blob;
         }
-
-
-
-
 
         function publishStream() {
             var img = $('#img_to_share').attr('src');
@@ -194,13 +178,11 @@ var Main = (function () {
                         console.log("Posted to facebook");
                     }
                 });
-
             }
             catch (e) {
                 console.log(e);
             }
         }
-
 
         var testToken;
 
@@ -212,11 +194,7 @@ var Main = (function () {
                 xfbml: true,
                 status: true
             });
-           // console.log('this works1');
-
-
             FB.getLoginStatus(function (response) {
-             //   console.log('this works');
                 if (response.authResponse) {
                     $('#AccessToken').val(response.authResponse.accessToken);
                     console.log('logged');
@@ -228,11 +206,7 @@ var Main = (function () {
                 }
                 console.log(testToken);
             });
-
-
         });
-        
-
         $('#share_picture').on('click', crop);
         $('#reset').on('click', function () {
             window.location.reload()
