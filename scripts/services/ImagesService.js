@@ -45,7 +45,7 @@ var ImagesService = (function () {
         var token = localStorage.getItem('currUserToken'),
             imgData = data.split(',')[1],
             imgType = data.split(',')[0].split(';')[0].split(':')[1];
-        
+
         var img = {
             "Filename": "new photo",
             "ContentType": imgType,

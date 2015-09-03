@@ -13,6 +13,8 @@ var resizeableImage = require('./services/resizeableImage.js');
 var imageAddings = require('./services/imageAddings.js');
 var DB = require('./DBOperations.js');
 
+var UIModule = require('./UIModule.js')
+
 // app start point
 // Temp
 // For test purpose
@@ -21,34 +23,12 @@ var Main = (function () {
     var Service = {};
         
         Service.main = function() {
-            var IS = Object.create(ImagesService).init();
 
             LoadPicModule;
+
             TakePictureModeule;
 
-            $('#logoutButton').on('click', function() {
-                UserServices.logOutUser();
-            });
-
-            $('#testButton').on('click', function() {
-                DB.GetAllImages(localStorage.getItem('currUserToken'))
-                    .then(function (data) {
-                        var imgs = data.Result;
-                        console.log(imgs)
-                    })
-            });
-
-            $('#logInButt').on('click', function() {
-                var username = $('#logInUsernameInput').val();
-                var password = $('#logInPasswordInput').val();
-                UserServices.loginUser(username, password);
-            });
-
-            $('#registerButt').click(function() {
-                var username = $('#registerUsernameInput').val();
-                var password = $('#registerPasswordInput').val();
-                UserServices.createUser(username, password);
-            })
+            UIModule;
 
             var $fileInput = $('<input/>')
                 .attr('type', "file")
@@ -63,8 +43,6 @@ var Main = (function () {
         var loggedToFB = false;
 
         $('.sticker_thumbnail').on('click', imageAddings.addSticker);
-
-
 
     /////// cropping
         crop = function () {

@@ -55,26 +55,15 @@ var UserServices = (function () {
                 })
         },
 
-
-        //login: function (username, password) {
-        //    DBOperations.GetAllUsers()
-        //        .success()
-        //        .then(function (data) {
-        //            var users = data.Result;
-        //            var user = _.find(users, function (item) {
-        //                return item.Username === username && item.password === password;
-        //            });
-        //
-        //            if (user) {
-        //                var currentUser = User.init(user.id, user.username, user.password, user.picsArray);
-        //                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        //            }
-        //        });
-        //},
-        
-        logout: function () {
-            localStorage.removeItem('currentUser');
+        welcomeCurrentUser: function(id) {
+            DBOperations.GetUserById(id)
+                .success(function(data) {
+                    var username = data.Result.Username;
+                    localStorage.setItem('currUserName', username);
+                    $('#show_profile').text('Hey, ' + localStorage.getItem('currUserName'));
+                })
         }
+
     }
 
     return userServices;

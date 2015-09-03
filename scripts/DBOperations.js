@@ -78,9 +78,9 @@ var DBOperationsService = (function () {
         return (
             $.ajax({
                 url: 'http://api.everlive.com/v1/' + APIKey + '/Users/' + userId,
-                type: "GET",
-                headers: {//"Authorization" : "Bearer your-access-token-here",
-                    "X-Everlive-Filter" : JSON.stringify(filter) }
+                type: "GET"
+                //headers: {//"Authorization" : "Bearer your-access-token-here",
+                //    "X-Everlive-Filter" : JSON.stringify(filter) }
             })
         );
     };
