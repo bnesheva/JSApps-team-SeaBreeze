@@ -2,7 +2,7 @@
  * Created by Nick on 26/8/2015.
  */
 
-var $ = require('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js')
+var $ = require('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js');
 
 var DBOperationsService = (function () {
 
@@ -17,7 +17,7 @@ var DBOperationsService = (function () {
         return this;
     };
 
-    DBService.GetAllUsers = function(token) {
+    DBService.GetAllUsers = function (token) {
         return (
             $.ajax({
                 type: 'GET',
@@ -27,7 +27,7 @@ var DBOperationsService = (function () {
         )
     };
 
-    DBService.AddUser = function(user) {
+    DBService.AddUser = function (user) {
         return (
             $.ajax({
                 type: 'POST',
@@ -45,24 +45,24 @@ var DBOperationsService = (function () {
         )
     };
 
-    DBService.GetAllImages = function(token) {
+    DBService.GetAllImages = function (token) {
         return (
             $.ajax({
                 type: 'GET',
                 url: 'http://api.everlive.com/v1/' + APIKey + '/Files',
-                headers: {"Authorization" : "Bearer " + token}
+                headers: {"Authorization": "Bearer " + token}
             })
         )
     };
 
-    DBService.AddImage = function(image, token) {
+    DBService.AddImage = function (image, token) {
         return (
             $.ajax({
                 type: 'POST',
                 contentType: "application/json",
                 dataType: "json",
                 url: 'http://api.everlive.com/v1/' + APIKey + '/Files',
-                headers: {"Authorization" : "Bearer " + token},
+                headers: {"Authorization": "Bearer " + token},
                 data: JSON.stringify(image)
                 //success: function(data) {
                 //    console.log('Successfully added image: ', data);
@@ -74,7 +74,7 @@ var DBOperationsService = (function () {
         )
     };
 
-    DBService.GetUserById = function(userId) {
+    DBService.GetUserById = function (userId) {
         return (
             $.ajax({
                 url: 'http://api.everlive.com/v1/' + APIKey + '/Users/' + userId,
@@ -85,50 +85,45 @@ var DBOperationsService = (function () {
         );
     };
 
-    DBService.GetImgsByUserId = function(userId, token) {
-        var filter = { "UserId" : userId };
+    DBService.GetImgsByUserId = function (userId, token) {
+        var filter = {"UserId": userId};
 
         return (
             $.ajax({
                 url: 'http://api.everlive.com/v1/' + APIKey + '/Files/',
                 type: "GET",
-                headers: { "Authorization" : "Bearer " + token,
-                    "X-Everlive-Filter" : JSON.stringify(filter) }
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "X-Everlive-Filter": JSON.stringify(filter)
+                }
             })
         );
     };
 
-    DBService.LogInUser = function(user) {
+    DBService.LogInUser = function (user) {
         return (
             $.post('http://api.everlive.com/v1/' + APIKey + '/oauth/token', user)
         )
     };
 
-    DBService.LogOutUser = function(token) {
+    DBService.LogOutUser = function (token) {
         return (
             $.ajax({
                 type: "GET",
                 url: 'http://api.everlive.com/v1/' + APIKey + '/oauth/logout',
-                headers: {"Authorization" : "Bearer " + token}
+                headers: {"Authorization": "Bearer " + token}
             })
         )
     };
 
-    DBService.DeleteImage = function() {
+    DBService.DeleteImage = function () {
         'TODO:..'
     };
 
-    DBService.DeleteUser = function() {
+    DBService.DeleteUser = function () {
         'TODO:'
     };
 
     return DBService;
 })();
-
 module.exports = DBOperationsService;
-
-
-
-
-
-

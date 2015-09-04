@@ -12,15 +12,11 @@ function drawToolbar() {
         '<button id="share_picture" title="Share" class="btn btn-default">Share</button>';// +
        // '</a>';
 
-
         var tableTemplate = Handlebars.compile(template);
-        var data = {
-
-        }
         var htmlToDraw = tableTemplate(data);
         $(selector).html(htmlToDraw);
     };
-};
+}
 
 var func = drawToolbar();
 func('#toolbar');

@@ -7,7 +7,6 @@ var ImagesService = require('./services/ImagesService.js');
 var UserServices = require('./services/UserServices.js');
 
 var UIModule = (function () {
-
     $('.welcome_holder h2').on('click', function () {
         $('#welcome_screen').hide();
     });
@@ -15,17 +14,17 @@ var UIModule = (function () {
     $('#showLoginBtn').on('click', function () {
         $('#welcome_screen').show();
     });
-    
-    if(ifLoggedIn()) {
+
+    if (ifLoggedIn()) {
         $('#welcome_screen').hide();
         $('#show_profile').text('Hey, ' + localStorage.getItem('currUserName'));
     }
 
-    if(!ifLoggedIn()) {
+    if (!ifLoggedIn()) {
         $('#show_profile').text('Hey, you are not logged in yet.');
     }
 
-    $('#testBtn').on('click', function() {
+    $('#testBtn').on('click', function () {
         DB.GetAllImages(localStorage.getItem('currUserToken'))
             .then(function (data) {
                 var imgs = data.Result;
@@ -33,7 +32,7 @@ var UIModule = (function () {
             })
     });
 
-    $('#logInButt').on('click', function() {
+    $('#logInButt').on('click', function () {
         var username = $('#logInUsernameInput').val();
         var password = $('#logInPasswordInput').val();
         UserServices.loginUser(username, password);
@@ -41,13 +40,13 @@ var UIModule = (function () {
         UserServices.welcomeCurrentUser(localStorage.getItem('currUserID'))
     });
 
-    $('#logoutBtn').on('click', function() {
+    $('#logoutBtn').on('click', function () {
         UserServices.logOutUser();
         localStorage.setItem('currUserToken', null);
         $('#show_profile').text('Hey, you are not logged in yet.');
     });
 
-    $('#registerButt').click(function() {
+    $('#registerButt').click(function () {
         var username = $('#registerUsernameInput').val();
         var password = $('#registerPasswordInput').val();
         UserServices.createUser(username, password);
@@ -56,7 +55,5 @@ var UIModule = (function () {
     function ifLoggedIn() {
         return localStorage.getItem('currUserToken') != '' + null;
     }
-
 })();
-
 module.exports = UIModule;

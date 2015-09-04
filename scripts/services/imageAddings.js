@@ -1,13 +1,12 @@
 // JavaScript source code
 var resizeableImage = require('./resizeableImage.js');
 
-
 var imageAddings = (function () {
-
     var imageAddings = {
         addPhoto: function (picUrl) {
             if ($('.resize-container').hasClass('photo')) {
             }
+
             var photo = (function (parent) {
                 var photo = Object.create(parent, {});
 
@@ -35,6 +34,7 @@ var imageAddings = (function () {
             if (images.length < 30) {
                 $('.sticker_thumbnail').removeClass('selected');
                 $(this).addClass('selected');
+
                 var src = imageAddings.getStickerUrl();
                 var sticker = (function (parent) {
                     var sticker = Object.create(parent, {});
@@ -74,7 +74,6 @@ var imageAddings = (function () {
                 return src;
             }
         },
-
         splitUrl: function (url) {
             var splittedUrl = url.split('/');
             var filename = splittedUrl[splittedUrl.length - 1];
@@ -82,7 +81,5 @@ var imageAddings = (function () {
         }
     };
 return imageAddings;
-
 }());
-
 module.exports = imageAddings;

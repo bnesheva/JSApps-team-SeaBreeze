@@ -42,7 +42,6 @@ var takePicture = (function () {
 
         function snapshot() {
             if (localMediaStream) {
-
                 var ctx = canvas[0].getContext('2d');
                 ctx.drawImage(video, -100, -50);
 
@@ -58,5 +57,4 @@ var takePicture = (function () {
         }, errorCallback);
     });
 }());
-
 module.exports = takePicture;

@@ -3,17 +3,15 @@
 function drawStickerThumbnails() {
     return function (selector) {
         var template =
-        '<div class="container-fluid sticker_container">' +
-            '<h3>Choose sticker to add</h3>' +
-
-            '<div class="sticker_holder">' +
-                '{{#each stickers}}' +
-                    '<div class="sticker_thumbnail"><img src="images/stikers/' + '{{this.name}}' + '.png"/ alt="' + '{{this.name}}' + '"></div>' +
-                '{{/each}}' +
-            '</div>' +
-            '<div id="test_draw"></div>' +
-        '</div>';
-
+            '<div class="container-fluid sticker_container">' +
+                '<h3>Choose sticker to add</h3>' +
+                '<div class="sticker_holder">' +
+                    '{{#each stickers}}' +
+                        '<div class="sticker_thumbnail"><img src="images/stikers/' + '{{this.name}}' + '.png"/ alt="' + '{{this.name}}' + '"></div>' +
+                    '{{/each}}' +
+                '</div>' +
+                '<div id="test_draw"></div>' +
+            '</div>';
 
         var tableTemplate = Handlebars.compile(template);
         var data = {
@@ -34,13 +32,13 @@ function drawStickerThumbnails() {
                 { name: 'hat-02' },
                 { name: 'mustaches-01' },
                 { name: 'mustaches-02' },
-                { name: 'thug-01' },
+                { name: 'thug-01' }
             ]
-        }
+        };
         var stickersToDraw = tableTemplate(data);
         $(selector).html(stickersToDraw);
     };
-};
+}
 
 var func = drawStickerThumbnails();
 func('#sticker_palette');

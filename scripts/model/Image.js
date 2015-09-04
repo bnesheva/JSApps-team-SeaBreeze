@@ -3,7 +3,7 @@
  */
 
 var Image = (function () {
-    var _ = require("bower_components/underscore.js")
+    var _ = require("bower_components/underscore.js");
 
     var image = Object.create({});
 
@@ -45,16 +45,16 @@ var Image = (function () {
             this._url = value;
         }
     });
-    
+
     Object.defineProperty(image, 'rating', {
-		get: function () {
-			return this._rating;
-		},
-		set: function (value) {
-			this._rating = value;
-		}
-	});
-    
+        get: function () {
+            return this._rating;
+        },
+        set: function (value) {
+            this._rating = value;
+        }
+    });
+
     //img = {
     //    "Filename": 'name',
     //    "ContentType": "image",
@@ -63,5 +63,4 @@ var Image = (function () {
 
     return image;
 })();
-
 module.exports = Image;

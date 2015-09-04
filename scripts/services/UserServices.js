@@ -64,9 +64,7 @@ var UserServices = (function () {
                 })
         }
 
-    }
-
+    };
     return userServices;
 })();
-
 module.exports = UserServices;

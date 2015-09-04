@@ -50,8 +50,6 @@ var User = (function () {
 			return this;
 		}
 	});
-
     return user;
 })();
-
 module.exports = User;

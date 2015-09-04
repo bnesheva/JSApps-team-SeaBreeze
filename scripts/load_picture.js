@@ -18,13 +18,11 @@ var LoadPic = (function LoadPic() {
         picChange(e)
     });
 
-
     $saveButton.on('click', function () {
         IS.UploadImage($fileInput[0].files[0], localStorage.getItem('currUserID'));
     });
 
     function picChange(event) {
-
         var fileInput = event.target.files;
 
         if (fileInput[0].type === 'image/jpeg') {
@@ -39,5 +37,4 @@ var LoadPic = (function LoadPic() {
         }
     }
 })();
-
 module.exports = LoadPic;

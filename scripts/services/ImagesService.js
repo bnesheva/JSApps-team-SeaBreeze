@@ -21,7 +21,7 @@ var ImagesService = (function () {
 
         FR.onload = function() {
             imgData = FR.result.split(',')[1];
-            token = localStorage.getItem('currUserToken')
+            token = localStorage.getItem('currUserToken');
             img = {
                 "Filename": inputFile.name,
                 "ContentType": inputFile.type,
@@ -60,9 +60,7 @@ var ImagesService = (function () {
             .fail(function(data) {
                 console.log('Failed adding img ', data);
             })
-    }
-
+    };
     return ImagesService;
 })();
-
 module.exports = ImagesService;
