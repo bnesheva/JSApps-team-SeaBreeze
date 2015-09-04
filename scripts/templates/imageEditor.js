@@ -13,7 +13,7 @@ function drawImageEditor() {
                     '<button id="takeShot">Take Photo</button>' +
                 '</div>' +
             '</div>';
-
+		var data = '';
         var tableTemplate = Handlebars.compile(template);
         var htmlToDraw = tableTemplate(data);
         $(selector).html(htmlToDraw);

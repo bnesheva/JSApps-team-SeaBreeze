@@ -52,7 +52,7 @@ function drawWelcomeScreen() {
                     '</div>' +
                 '</div>' +
             '</div>';
-
+		var data = '';
         var tableTemplate = Handlebars.compile(template);
         var htmlToDraw = tableTemplate(data);
         $(selector).html(htmlToDraw);
@@ -61,3 +61,13 @@ function drawWelcomeScreen() {
 
 var func = drawWelcomeScreen();
 func('#welcome_screen');
+
+$('#switch_to_register').on('click', function () {
+    $('.slideable').addClass('slided');
+	
+});
+
+$('#switch_to_login').on('click', function () {
+    $('.slideable').removeClass('slided');
+	
+});

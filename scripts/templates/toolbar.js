@@ -11,7 +11,7 @@ function drawToolbar() {
        // '<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">' +
         '<button id="share_picture" title="Share" class="btn btn-default">Share</button>';// +
        // '</a>';
-
+		var data = '';
         var tableTemplate = Handlebars.compile(template);
         var htmlToDraw = tableTemplate(data);
         $(selector).html(htmlToDraw);
