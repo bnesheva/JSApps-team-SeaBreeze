@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Become a skilled developer overnight"/>
+    <meta property="og:description"
+          content="I just gained some web development skills - wanna boost yours as well? If you want all this to become true, and to gain even more skills in real life, better start learning hard in Telerik Academy"/>
+    <meta property="og:image" content="images/wireframe_v1.jpg"/>
+    <meta property="fb:app_id" content="398097427052792"/>
+    <title>Become a Dev Master Overnight</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="scripts/libraries/system.js"></script>
+
+</head>
+<body>
+<script>
+	
+</script>
+<header>
+    <!--Username:-->
+    <!--<input id="login" type="text" name="username">-->
+    <!--Password:-->
+    <!--<input id="password" type="text" name="password">-->
+    <!--<input id="loginButton"  type="submit" value="Log in">-->
+    
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="images/logo01.jpg" height="50px" alt="Sea Breeze logo"/>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">Become a Dev <span class="sr-only">(current)</span></a></li>-->
+                <!--<li><a href="#">Rate other Devs</a></li>-->
+                <!--</ul>-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="profile_holder">
+                            <span id="show_profile">User</span>
+                            <input id="showLoginBtn" class="btn btn-default btn-xs" type="submit" value="Show log in">
+                            <input id="logoutBtn" class="btn btn-default btn-xs" type="submit" value="Log out">
+                            <div class="profile_popup">
+                                <div class="row">
+                                    <div class="col-xs-4">Image</div>
+                                    <div class="col-xs-8">
+                                        <p>Name</p>
+                                        <input id="testBtn" class="btn btn-default btn-xs" type="submit" value="TEST">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main></main>
+<aside id="welcome_screen"></aside>
+<aside id="toolbar"></aside>
+<section id="sticker_palette"></section>
+<div id="to_detach">
+	<div id="fb-root"></div>
+	<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"></fb:login-button>
+</div>
+
+
+<footer>This is a SeaBreeze teamwork for JSApps 2015 Telerik Course<div
+  class="fb-like"
+  data-share="true"
+  data-width="280"
+  data-show-faces="true">
+</div></footer>
+
+<script>
+
+    System.import('scripts/Main.js')
+            .then(function (Service) {
+                Service.main();
+            })
+
+</script>
+
+<script src="https://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+<script src="scripts/sammy/lib/sammy.js" type="text/javascript" charset="utf-8"></script>
+<script src="scripts/general.js"></script>
+</body>
+</html>
